@@ -1,0 +1,43 @@
+.content {
+    width: 95%;
+    padding: 0px 0px 50px 20px
+}
+
+.table-title {
+    font-size: 55px;
+    color: rgb(77, 76, 76);
+}
+
+.table-content {
+    border: 2px solid gray;
+    border-radius: 8px;
+}
+
+.pencil-icon {
+    color: rgb(236, 154, 2);
+}
+
+.pencil-icon:hover {
+    color: rgb(172, 112, 0);
+    transition: 0.5s;
+}
+
+
+.trash-icon {
+    color: rgb(114, 114, 114);
+}
+
+.trash-icon:hover {
+    color: black;
+    transition: 0.5s;
+}
+
+.pencil-icon, .trash-icon {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.add-btn {
+    margin: 5px 0px 30px 0px;
+}
+

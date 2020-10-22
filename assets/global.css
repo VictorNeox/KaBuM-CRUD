@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100%;
+    background-color: rgb(221, 220, 220);
+}
+
+.logo-kabum {
+    width: 150px;
+    margin-top: 5px;
+}
+
+.nav-wrapper {
+    background: linear-gradient(to bottom, rgba(254,191,0,1) 0%, rgba(244,130,0,1) 6%, rgba(231,98,0,1) 24%, rgba(228,91,0,1) 77%);
+}
