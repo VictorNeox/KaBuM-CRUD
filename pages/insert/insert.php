@@ -11,7 +11,10 @@
         $rg = mysqli_real_escape_string($conn, $_POST['rg']);
         $telephone1 = mysqli_real_escape_string($conn, $_POST['telephone1']);
         $telephone2 = mysqli_real_escape_string($conn, $_POST['telephone2']);
+
+        //$birth = date('Y-m-d', strtotime($_POST['birth']));
         $birth = mysqli_real_escape_string($conn, $_POST['birth']);
+
         $email = mysqli_real_escape_string($conn, $_POST['email']);
 
         $sql = "INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email) VALUES (

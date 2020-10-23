@@ -24,11 +24,11 @@
 
 
 .trash-icon {
-    color: rgb(114, 114, 114);
+    color: rgb(13, 128, 2);
 }
 
 .trash-icon:hover {
-    color: black;
+    color: rgb(17, 167, 3);
     transition: 0.5s;
 }
 

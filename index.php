@@ -22,6 +22,7 @@
         telephone2 varchar(9),
         birth date,
         email varchar(255),
+        active boolean DEFAULT TRUE,
         PRIMARY KEY (id)
     );*/
 
@@ -123,7 +124,7 @@
                                     <td><?php echo htmlspecialchars($client['email']); ?></td>
                                     <td>
                                         <i class="fas fa-pencil-alt pencil-icon"></i>
-                                        <i class="fas fa-trash-alt trash-icon"></i>
+                                        <i class="fas fa-circle trash-icon"></i>
                                     </td>
                                 </tr>
                             <?php } ?>
