@@ -8,6 +8,7 @@
 
     $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+
     $conn->close();
 
     /*INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email) values ('Larissa Alves', '12345678911', '123456789', '000000000', '000000000', '2000-04-18', 'larissa-alves24@gmail.com');
@@ -23,10 +24,42 @@
         email varchar(255),
         PRIMARY KEY (id)
     );*/
+
+    function dataFormat($data, $typeofdata) {
+        if ($typeofdata == 'cpf') 
+        {
+            $string1 = substr($data, 0, 3);
+            $string2 = substr($data, 3, 3);
+            $string3 = substr($data, 6, 3);
+            $string4 = substr($data, -2);
+    
+            $data = "$string1"."."."$string2"."."."$string3"."-"."$string4";
+            return $data;
+        }
+        else if ($typeofdata == 'rg') {
+            $string1 = substr($data, 0, 2);
+            $string2 = substr($data, 2, 3);
+            $string3 = substr($data, 5, 3);
+            $string4 = substr($data, -1);
+            
+            $data = "$string1"."."."$string2"."."."$string3"."-"."$string4";    
+            return $data;
+        }
+        else if ($typeofdata == 'tel') 
+        {
+            $string1 = substr($data, 0, 4);
+            $string2 = substr($data, 4, 8);
+            
+            $data = "$string1"."-"."$string2";
+            return $data;
+        }
+        else if ($typeofdata == 'birth')
+        {
+            $data = date('d/m/Y', strtotime($data));
+            return $data;
+        }
+    }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <head>
@@ -70,15 +103,23 @@
                         </thead>
             
                         <tbody>
-                            <?php foreach($clients as $client){ ?>
+                            <?php foreach($clients as $client){ 
+                                $name = mysqli_real_escape_string($conn, $_POST['name']);
+                                $cpf = dataFormat($client["cpf"], 'cpf');
+                                $rg = dataFormat($client["rg"], 'rg');
+                                $telephone1 = dataFormat($client["telephone1"], 'tel');
+                                $telephone2 = dataFormat($client["telephone1"], 'tel');
+                                $birth = dataFormat($client["birth"], 'birth');
+                                $email = mysqli_real_escape_string($conn, $_POST['email']);
+                            ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($client['id']); ?></td>
                                     <td><?php echo htmlspecialchars($client['name']); ?></td>
-                                    <td><?php echo htmlspecialchars($client['cpf']); ?></td>
-                                    <td><?php echo htmlspecialchars($client['rg']); ?></td>
-                                    <td><?php echo htmlspecialchars($client['telephone1']); ?></td>
-                                    <td><?php echo htmlspecialchars($client['telephone2']); ?></td>
-                                    <td><?php echo htmlspecialchars($client['birth']); ?></td>
+                                    <td><?php echo htmlspecialchars($cpf); ?></td>
+                                    <td><?php echo htmlspecialchars($rg); ?></td>
+                                    <td>(19) <?php echo htmlspecialchars($telephone1); ?></td>
+                                    <td>(19) <?php echo htmlspecialchars($telephone2); ?></td>
+                                    <td><?php echo htmlspecialchars($birth); ?></td>
                                     <td><?php echo htmlspecialchars($client['email']); ?></td>
                                     <td>
                                         <i class="fas fa-pencil-alt pencil-icon"></i>
