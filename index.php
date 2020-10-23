@@ -25,6 +25,7 @@
             <table class="striped responsive-table centered">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nome</th>
                         <th>CPF</th>
                         <th>RG</th>
@@ -38,6 +39,7 @@
     
                 <tbody>
                     <tr>
+                        <td>1</td>
                         <td>Víctor Rodrigues</td>
                         <td>000.000.000-00</td>
                         <td>00.000.000-0</td>
@@ -51,6 +53,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>2</td>
                         <td>Víctor Rodrigues</td>
                         <td>000.000.000-00</td>
                         <td>00.000.000-0</td>
@@ -64,6 +67,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>3</td>
                         <td>Víctor Rodrigues</td>
                         <td>000.000.000-00</td>
                         <td>00.000.000-0</td>
@@ -77,6 +81,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>4</td>
                         <td>Víctor Rodrigues</td>
                         <td>000.000.000-00</td>
                         <td>00.000.000-0</td>
@@ -90,6 +95,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>5</td>
                         <td>Víctor Rodrigues</td>
                         <td>000.000.000-00</td>
                         <td>00.000.000-0</td>
