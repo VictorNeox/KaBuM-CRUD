@@ -1,4 +1,18 @@
 <?php
+/*INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email, active) values ('Larissa Alves', '12345678911', '123456789', '000000000', '000000000', '2000-04-18', 'larissa-alves24@gmail.com', 0);
+
+CREATE TABLE clients(
+    id int NOT NULL AUTO_INCREMENT,
+    name varchar(255),
+    cpf varchar(11),
+    rg varchar(9),
+    telephone1 varchar(9),
+    telephone2 varchar(9),
+    birth date,
+    email varchar(255),
+    active boolean DEFAULT TRUE,
+    PRIMARY KEY (id)
+);*/
 
     include_once('./connection.php');
 
@@ -8,23 +22,8 @@
 
     $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-
     $conn->close();
 
-    /*INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email) values ('Larissa Alves', '12345678911', '123456789', '000000000', '000000000', '2000-04-18', 'larissa-alves24@gmail.com');
-    
-    CREATE TABLE clients(
-        id int NOT NULL AUTO_INCREMENT,
-        name varchar(255),
-        cpf varchar(11),
-        rg varchar(9),
-        telephone1 varchar(9),
-        telephone2 varchar(9),
-        birth date,
-        email varchar(255),
-        active boolean DEFAULT TRUE,
-        PRIMARY KEY (id)
-    );*/
 
     function dataFormat($data, $typeofdata) {
         if ($typeofdata == 'cpf') 
@@ -105,13 +104,11 @@
             
                         <tbody>
                             <?php foreach($clients as $client){ 
-                                $name = mysqli_real_escape_string($conn, $_POST['name']);
                                 $cpf = dataFormat($client["cpf"], 'cpf');
                                 $rg = dataFormat($client["rg"], 'rg');
                                 $telephone1 = dataFormat($client["telephone1"], 'tel');
                                 $telephone2 = dataFormat($client["telephone1"], 'tel');
                                 $birth = dataFormat($client["birth"], 'birth');
-                                $email = mysqli_real_escape_string($conn, $_POST['email']);
                             ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($client['id']); ?></td>
@@ -123,8 +120,8 @@
                                     <td><?php echo htmlspecialchars($birth); ?></td>
                                     <td><?php echo htmlspecialchars($client['email']); ?></td>
                                     <td>
-                                        <i class="fas fa-pencil-alt pencil-icon"></i>
-                                        <i class="fas fa-circle trash-icon"></i>
+                                        <a aria-label="Editar" data-balloon-pos="up"><i class="fas fa-pencil-alt pencil-icon"></i></a>
+                                        <a aria-label="<?php echo $client['isActive'] ? 'Ativo' : 'Inativo'?>" data-balloon-pos="up"><i class="fas fa-circle <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>

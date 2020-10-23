@@ -23,18 +23,28 @@
 }
 
 
-.trash-icon {
+
+.pencil-icon, .active, .inactive {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.active {
     color: rgb(13, 128, 2);
 }
 
-.trash-icon:hover {
+.active:hover {
     color: rgb(17, 167, 3);
     transition: 0.5s;
 }
 
-.pencil-icon, .trash-icon {
-    cursor: pointer;
-    margin-right: 5px;
+.inactive {
+    color: rgb(168, 2, 2);
+}
+
+.inactive:hover {
+    color: rgb(214, 3, 3);
+    transition: 0.5s;
 }
 
 .add-btn {
