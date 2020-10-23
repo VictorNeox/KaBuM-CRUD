@@ -6,12 +6,15 @@ input::-webkit-inner-spin-button {
 }
 
 .container {
+    -webkit-box-shadow: 2px 5px 12px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 5px 12px -4px rgba(0,0,0,0.75);
+    box-shadow: 2px 5px 12px -4px rgba(0,0,0,0.75);
     padding-top: 10px;
     margin-top: 50px;
-    border: 2px solid gray;
+    border: 2px solid rgb(194, 193, 193);
     background-color: #fff;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 6px;
     width: 400px;
 }
 

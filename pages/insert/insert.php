@@ -1,3 +1,36 @@
+<?php
+
+    $errors = array('name', 'email', 'birth', 'cpf', 'rg', 'telephone1', 'telephone2');
+
+    if(isset($_POST['submit'])) 
+    {
+
+        /*// Name Validation
+        if (isempty($_POST['name'])) 
+        {
+            $errors['name'] = 'Digite um nome';
+        } 
+        else if (!preg_match('/^[a-zA-Z\s]+$/', $_POST['name'])) 
+        {
+            $errors['name'] = 'Digite um nome válido (apenas letras)';
+        }
+        
+        // E-mail Validation
+
+        if (isempty($_POST['email'])) 
+        {
+            $errors['email'] = 'Digite um e-mail';
+        }
+        else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Digite um e-mail válido';
+        }*/
+
+
+
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +54,7 @@
 
     <div class="row container">
         <span>Insira os dados</span>
-        <form class=" col s12 offset-s1" method="POST" action="insertClient.php">
+        <form class=" col s12 offset-s1" method="POST" action="insert.php">
             <div class="row">
                 <div class="input-field col s10">
                     <input id="name" name="name" type="text" class="validate" onkeypress="return !(/[0-9!@#$%¨&*)(-+*/><_-]/i.test(event.key))" required>
@@ -46,7 +79,7 @@
                     <label for="cpf">CPF</label>
                 </div>
                 <div class="input-field col s5 input-documents">
-                    <input id="rg" name="rg" type="text" minlength="11" maxlength="11"  class="validate" onkeypress="return (/[0-9]/i.test(event.key))">
+                    <input id="rg" name="rg" type="text" minlength="9" maxlength="9"  class="validate" onkeypress="return (/[0-9]/i.test(event.key))">
                     <label for="rg">RG</label>
                 </div>
             </div>
