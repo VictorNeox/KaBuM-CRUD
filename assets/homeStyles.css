@@ -41,3 +41,7 @@
     margin: 5px 0px 30px 0px;
 }
 
+.non-client {
+    color: rgb(104, 103, 103);
+    font-size: 35px;
+}

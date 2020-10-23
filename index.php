@@ -1,7 +1,32 @@
 <?php
 
     include_once('./connection.php');
+
+    $sql = 'SELECT * from clients';
+
+    $result = mysqli_query($conn, $sql);
+
+    $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    $conn->close();
+
+    /*INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email) values ('Larissa Alves', '12345678911', '123456789', '000000000', '000000000', '2000-04-18', 'larissa-alves24@gmail.com');
+    
+    CREATE TABLE clients(
+        id int NOT NULL AUTO_INCREMENT,
+        name varchar(255),
+        cpf varchar(11),
+        rg varchar(9),
+        telephone1 varchar(9),
+        telephone2 varchar(9),
+        birth date,
+        email varchar(255),
+        PRIMARY KEY (id)
+    );*/
 ?>
+
+
+
 
 <!DOCTYPE html>
 <head>
@@ -24,97 +49,47 @@
 
     <div class="content">
         <h1 class="table-title">Clientes</h1>
-        <a href="/pages/insert/index.php" class="waves-effect waves-light btn add-btn">Adicionar cliente</a>
-        <div class="table-content">
-            <table class="striped responsive-table centered">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>RG</th>
-                        <th>Telefone 1</th>
-                        <th>Telefone 2</th>
-                        <th>Data de nascimento</th>
-                        <th>E-mail</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-    
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Víctor Rodrigues</td>
-                        <td>000.000.000-00</td>
-                        <td>00.000.000-0</td>
-                        <td>0000-00000</td>
-                        <td>0000-00000</td>
-                        <td>xx/xx/xxxx</td>
-                        <td>victordeoliveira.contato@gmail.com</td>
-                        <td>
-                            <i class="fas fa-pencil-alt pencil-icon"></i>
-                            <i class="fas fa-trash-alt trash-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Víctor Rodrigues</td>
-                        <td>000.000.000-00</td>
-                        <td>00.000.000-0</td>
-                        <td>0000-00000</td>
-                        <td>0000-00000</td>
-                        <td>xx/xx/xxxx</td>
-                        <td>victordeoliveira.contato@gmail.com</td>
-                        <td>
-                            <i class="fas fa-pencil-alt pencil-icon"></i>
-                            <i class="fas fa-trash-alt trash-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Víctor Rodrigues</td>
-                        <td>000.000.000-00</td>
-                        <td>00.000.000-0</td>
-                        <td>0000-00000</td>
-                        <td>0000-00000</td>
-                        <td>xx/xx/xxxx</td>
-                        <td>victordeoliveira.contato@gmail.com</td>
-                        <td>
-                            <i class="fas fa-pencil-alt pencil-icon"></i>
-                            <i class="fas fa-trash-alt trash-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Víctor Rodrigues</td>
-                        <td>000.000.000-00</td>
-                        <td>00.000.000-0</td>
-                        <td>0000-00000</td>
-                        <td>0000-00000</td>
-                        <td>xx/xx/xxxx</td>
-                        <td>victordeoliveira.contato@gmail.com</td>
-                        <td>
-                            <i class="fas fa-pencil-alt pencil-icon"></i>
-                            <i class="fas fa-trash-alt trash-icon"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Víctor Rodrigues</td>
-                        <td>000.000.000-00</td>
-                        <td>00.000.000-0</td>
-                        <td>0000-00000</td>
-                        <td>0000-00000</td>
-                        <td>xx/xx/xxxx</td>
-                        <td>victordeoliveira.contato@gmail.com</td>
-                        <td>
-                            <i class="fas fa-pencil-alt pencil-icon"></i>
-                            <i class="fas fa-trash-alt trash-icon"></i>
-                        </td>
-                    </tr>
-                </tbody>
-          </table>
-        </div>
+        <a href="/pages/insert/insert.php" class="waves-effect waves-light btn add-btn">Adicionar cliente</a>
+        <?php if(empty($clients)) { ?>
+            <h1 class="non-client">Nenhum cliente inserido!</h1>
+            <?php } else { ?>
+                <div class="table-content">
+                    <table class="striped responsive-table centered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>RG</th>
+                                <th>Telefone 1</th>
+                                <th>Telefone 2</th>
+                                <th>Data de nascimento</th>
+                                <th>E-mail</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+            
+                        <tbody>
+                            <?php foreach($clients as $client){ ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($client['id']); ?></td>
+                                    <td><?php echo htmlspecialchars($client['name']); ?></td>
+                                    <td><?php echo htmlspecialchars($client['cpf']); ?></td>
+                                    <td><?php echo htmlspecialchars($client['rg']); ?></td>
+                                    <td><?php echo htmlspecialchars($client['telephone1']); ?></td>
+                                    <td><?php echo htmlspecialchars($client['telephone2']); ?></td>
+                                    <td><?php echo htmlspecialchars($client['birth']); ?></td>
+                                    <td><?php echo htmlspecialchars($client['email']); ?></td>
+                                    <td>
+                                        <i class="fas fa-pencil-alt pencil-icon"></i>
+                                        <i class="fas fa-trash-alt trash-icon"></i>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php } ?>
     </div>
 </body>
 </html>

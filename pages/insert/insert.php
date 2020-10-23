@@ -1,32 +1,39 @@
 <?php
 
-    $errors = array('name', 'email', 'birth', 'cpf', 'rg', 'telephone1', 'telephone2');
-
+//$errors = array('name', 'email', 'birth', 'cpf', 'rg', 'telephone1', 'telephone2');
+    
     if(isset($_POST['submit'])) 
-    {
+    {   
+        include_once('../../connection.php');
 
-        /*// Name Validation
-        if (isempty($_POST['name'])) 
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $cpf = mysqli_real_escape_string($conn, $_POST['cpf']);
+        $rg = mysqli_real_escape_string($conn, $_POST['rg']);
+        $telephone1 = mysqli_real_escape_string($conn, $_POST['telephone1']);
+        $telephone2 = mysqli_real_escape_string($conn, $_POST['telephone2']);
+        $birth = mysqli_real_escape_string($conn, $_POST['birth']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+
+        $sql = "INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email) VALUES (
+            '$name',
+            '$cpf',
+            '$rg',
+            '$telephone1',
+            '$telephone2',
+            '$birth',
+            '$email'
+        )";
+
+        $result = mysqli_query($conn, $sql);
+        if($result) 
         {
-            $errors['name'] = 'Digite um nome';
+            header('location: /');
         } 
-        else if (!preg_match('/^[a-zA-Z\s]+$/', $_POST['name'])) 
+        else 
         {
-            $errors['name'] = 'Digite um nome válido (apenas letras)';
+            echo "An query error occurred: " . $mysqli_error($conn);
         }
-        
-        // E-mail Validation
-
-        if (isempty($_POST['email'])) 
-        {
-            $errors['email'] = 'Digite um e-mail';
-        }
-        else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'Digite um e-mail válido';
-        }*/
-
-
-
+        $conn->close();
     }
 
 ?>
@@ -94,7 +101,7 @@
                 </div>
             </div>
             <div class="row form-flex">
-                <button class="btn waves-effect waves-light" type="submit">Enviar</button>
+                <button class="btn waves-effect waves-light" name="submit" type="submit">Enviar</button>
                 <a class="btn waves-effect waves-light" href="../../index.php" >Voltar</a> 
             </div>
         </form>
