@@ -14,12 +14,12 @@
 }
 
 .pencil-icon {
-    color: rgb(236, 154, 2);
+    color: rgb(172, 112, 0);
 }
 
 .pencil-icon:hover {
-    color: rgb(172, 112, 0);
-    transition: 0.5s;
+    color: rgb(236, 154, 2);
+    transition: 0.3s;
 }
 
 
@@ -35,7 +35,7 @@
 
 .active:hover {
     color: rgb(17, 167, 3);
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .inactive {
@@ -44,7 +44,7 @@
 
 .inactive:hover {
     color: rgb(214, 3, 3);
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .add-btn {

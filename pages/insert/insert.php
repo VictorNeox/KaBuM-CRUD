@@ -4,7 +4,7 @@
     
     if(isset($_POST['submit'])) 
     {   
-        include_once('../../connection.php');
+        include_once('../../database/connection.php');
 
         $name = mysqli_real_escape_string($conn, $_POST['name']);
         $cpf = mysqli_real_escape_string($conn, $_POST['cpf']);
@@ -50,9 +50,9 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script defer src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"el="stylesheet">
-    <script defer src="../../js/insertjs.js"></script>
-    <link rel="stylesheet" href="/assets/global.css">
-    <link rel="stylesheet" href="/assets/insertStyles.css">
+    <script defer src="../../utils/datePicker.js"></script>
+    <link rel="stylesheet" href="/assets/styles/global.css">
+    <link rel="stylesheet" href="/assets/styles/insertStyles.css">
     <title>C.R.U.D - Insert</title>
 </head>
 <body>
@@ -104,8 +104,8 @@
                 </div>
             </div>
             <div class="row form-flex">
-                <button class="btn waves-effect waves-light" name="submit" type="submit">Enviar</button>
                 <a class="btn waves-effect waves-light" href="../../index.php" >Voltar</a> 
+                <button class="btn waves-effect waves-light" name="submit" type="submit">Enviar</button>
             </div>
         </form>
     </div>

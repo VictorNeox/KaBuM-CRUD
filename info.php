@@ -1,3 +1,5 @@
 <?php
-phpinfo();
+    if(isset($_POST['teste'])) {
+        echo $_POST['teste'];
+    }
 ?>
