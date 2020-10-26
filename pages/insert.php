@@ -39,12 +39,9 @@
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"el="stylesheet">
-
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script defer src='https://kit.fontawesome.com/a076d05399.js'></script>
     
+    <?php include('../headers/cdn.php'); ?>
+
     <script defer src="../utils/datePicker.js"></script>
     <link rel="stylesheet" href="/assets/styles/global.css">
     <link rel="stylesheet" href="/assets/styles/insertEditStyles.css">
@@ -52,11 +49,8 @@
     <title>C.R.U.D - Insert</title>
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <img src="../assets/imgs/kabumLogo.png" class="brand-logo right logo-kabum" alt="Logo do KaBuM!" >
-        </div>
-    </nav>
+
+    <?php include('../headers/nav.php'); ?>
 
     <div class="row container">
         <span>Insira os dados</span>

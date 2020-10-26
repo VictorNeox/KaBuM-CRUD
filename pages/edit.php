@@ -42,11 +42,7 @@
         <title>C.R.U.D - Edit</title>
     </head>
     <body>
-    <nav>
-        <div class="nav-wrapper">
-            <img src="../assets/imgs/kabumLogo.png" class="brand-logo right logo-kabum" alt="Logo do KaBuM!" >
-        </div>
-    </nav>
+    <?php include('../headers/nav.php'); ?>
 
     <div class="row container">
         <span>Insira os novos dados</span>

@@ -30,15 +30,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="/assets/styles/ballon.css">
     <link rel="stylesheet" href="/assets/styles/global.css">
     <link rel="stylesheet" href="/assets/styles/homeStyles.css">
-
-    <script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script defer src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    
+    <?php include('./headers/cdn.php') ?>;
+    
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <script defer type="text/javascript" src="./utils/jquery.mask.min.js"></script>
@@ -52,15 +48,14 @@
     <title>C.R.U.D - Home</title>
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <img src="./assets/imgs/kabumLogo.png" class="brand-logo right logo-kabum" alt="Logo do KaBuM!" >
-        </div>
-    </nav>
+    
+    <?php include('./headers/nav.php'); ?>
 
     <div class="content">
+
         <h1 class="table-title">Clientes</h1>
         <a href="/pages/insert.php" class="waves-effect waves-light btn add-btn">Adicionar cliente</a>
+
         <div class="row">
             <form action="/index.php" method="get">
                 <div class="input-field col s2">
@@ -80,6 +75,7 @@
                 <button style="margin-top: 25px;" type="submit" class="waves-effect waves-light btn">Filtrar</button>
             </form>
         </div>
+
         <?php if(empty($clients)) { ?>
             <h1 class="non-client">Nenhum cliente inserido!</h1>
         <?php } else { ?>
@@ -121,8 +117,6 @@
             </div>
         <?php } ?>
     </div>
-
-    <div class="row">
 </div>
 
 </body>
