@@ -16,27 +16,10 @@ CREATE TABLE clients(
     
     include('./database/connection.php');
 
-    if(isset($_POST['id'])) {
-        $clientId = $_POST['id'];
-        $sql = 'SELECT isActive FROM clients WHERE id = ' . $clientId;
-        $result = mysqli_query($conn, $sql);
-        $result = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        if($result['isActive']) {
-            $sql = 'UPDATE clients SET isActive = 0 WHERE id = ' . $clientId;
-        } else {
-            $sql = 'UPDATE clients SET isActive = 1 WHERE id = ' . $clientId;
-        }
-
-        mysqli_query($conn, $sql);
-    }
-
-    if(!isset($_POST['id']))
-    {
-        $sql = "SELECT * from clients";
-        $result = mysqli_query($conn, $sql);
-        $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }
+    $sql = "SELECT * from clients ORDER BY isActive DESC";
+    $result = mysqli_query($conn, $sql);
+    $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
     $conn->close();
 
@@ -52,7 +35,8 @@ CREATE TABLE clients(
     <link rel="stylesheet" href="/assets/styles/homeStyles.css">
 
     
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script defer src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.0/dist/jBox.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.0/dist/jBox.all.min.css" rel="stylesheet">
@@ -107,7 +91,7 @@ CREATE TABLE clients(
                                 <td><?php echo htmlspecialchars($client['email']); ?></td>
                                 <td>
                                     <i class="fas fa-pencil-alt pencil-icon"></i>
-                                    <i data-id="<?php echo $client['id']; ?>" class="tooltip fas fa-circle delete-button <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i>
+                                    <i data-id="<?php echo $client['id']; ?>" class="tooltip fas fa-circle delete-button confirm <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i>
                                 </td>
                             </tr>
                         <?php } ?>
