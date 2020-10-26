@@ -6,5 +6,4 @@ $(document).ready(function(){
   $(".birth").each(function(index) {
     $(this).text(moment($(this).text()).format('D/MM/yyyy'));
   });
-  
 });
