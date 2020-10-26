@@ -2,7 +2,7 @@ $('.delete-button').click(function(e) {
 
     let clientId = $(e.target).attr('data-id');
     let action = $(e.target).hasClass('active') ? 'inativar' : 'ativar';
-    let msg = action == 'inativar' ? 'inativado!' : 'ativado'
+    let msg = action == 'inativar' ? 'inativado' : 'ativado'
 
     Swal.fire({
         title: 'Tem certeza?',
