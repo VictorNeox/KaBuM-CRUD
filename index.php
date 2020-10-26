@@ -14,10 +14,11 @@
     );*/
     
     include('./database/connection.php');
-
-
     $sql = "SELECT * from clients ORDER BY isActive DESC";
-    $result = mysqli_query($conn, $sql);
+    include('./filter.php');
+
+
+    $result = mysqli_query($conn, $sql) or die();
     $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
     $conn->close();
@@ -28,6 +29,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/assets/styles/ballon.css">
     <link rel="stylesheet" href="/assets/styles/global.css">
@@ -38,8 +40,9 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script defer src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
     <script defer type="text/javascript" src="./utils/jquery.mask.min.js"></script>
-    <script defer type="text/javascript" src="./utils/masks.js"></script>
+    <script defer type="text/javascript" src="./utils/utils.js"></script>
     <script defer type="text/javascript" src="./utils/req.js"></script>
     <script defer type="text/javascript" src="./utils/tooltip.js"></script>
 
@@ -58,6 +61,25 @@
     <div class="content">
         <h1 class="table-title">Clientes</h1>
         <a href="/pages/insert.php" class="waves-effect waves-light btn add-btn">Adicionar cliente</a>
+        <div class="row">
+            <form action="/index.php" method="get">
+                <div class="input-field col s2">
+                    <select id="filter" name="filter" required>
+                        <option disabled selected>Escolha uma opção</option>
+                        <option value="name">Nome</option>
+                        <option value="cpf">CPF</option>
+                        <option value="rg">RG</option>
+                        <option value="email">E-mail</option>
+                    </select>
+                    <label for="filter">Filtro</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="search" name="search" type="text" minlength="3" required>
+                    <label for="search">Pesquisa</label>
+                </div>
+                <button style="margin-top: 25px;" type="submit" class="waves-effect waves-light btn">Filtrar</button>
+            </form>
+        </div>
         <?php if(empty($clients)) { ?>
             <h1 class="non-client">Nenhum cliente inserido!</h1>
         <?php } else { ?>
@@ -83,7 +105,7 @@
                                 <td><?php echo htmlspecialchars($client['id']); ?></td>
                                 <td><?php echo htmlspecialchars($client['name']); ?></td>
                                 <td class="cpf"><?php echo htmlspecialchars($client['cpf']); ?></td>
-                                <td class="rg"><?php echo htmlspecialchars($client['cpf']); ?></td>
+                                <td class="rg"><?php echo htmlspecialchars($client['rg']); ?></td>
                                 <td class="cel"><?php echo htmlspecialchars($client['telephone1']); ?></td>
                                 <td class="cel"><?php echo htmlspecialchars($client['telephone2']); ?></td>
                                 <td class="birth"><?php echo htmlspecialchars($client['birth']); ?></td>

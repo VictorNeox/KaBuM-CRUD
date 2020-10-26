@@ -26,7 +26,6 @@
         
 
         $result = mysqli_query($conn, $sql);
-        echo json_encode($cpf);
     }
 
     $conn->close();
