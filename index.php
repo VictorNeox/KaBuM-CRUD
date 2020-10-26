@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/assets/styles/global.css">
     <link rel="stylesheet" href="/assets/styles/homeStyles.css">
     
-    <?php include('./headers/cdn.php') ?>;
+    <?php include('./headers/cdn.php') ?>
     
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
@@ -41,6 +41,7 @@
     <script defer type="text/javascript" src="./utils/utils.js"></script>
     <script defer type="text/javascript" src="./utils/req.js"></script>
     <script defer type="text/javascript" src="./utils/tooltip.js"></script>
+    <script defer type="text/javascript" src="./utils/modal.js"></script>
 
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
@@ -49,7 +50,7 @@
 </head>
 <body>
     
-    <?php include('./headers/nav.php'); ?>
+    <?php include('./headers/nav.php') ?>
 
     <div class="content">
 
@@ -68,11 +69,14 @@
                     </select>
                     <label for="filter">Filtro</label>
                 </div>
+
                 <div class="input-field col s3">
                     <input id="search" name="search" type="text" minlength="3" required>
                     <label for="search">Pesquisa</label>
                 </div>
+
                 <button style="margin-top: 25px;" type="submit" class="waves-effect waves-light btn">Filtrar</button>
+                <button style="margin-top: 25px;" onclick="window.location.href = '/';"class="waves-effect waves-light btn">Limpar filtro</button>
             </form>
         </div>
 

@@ -2,32 +2,44 @@ $('.delete-button').click(function(e) {
 
     let clientId = $(e.target).attr('data-id');
     let action = $(e.target).hasClass('active') ? 'inativar' : 'ativar';
-    let result = confirm(`Tem certeza que deseja ${action} o ID ${clientId}?`);
+    let msg = action == 'inativar' ? 'inativado!' : 'ativado'
 
-    if(result) {
-        $.ajax({
-            type: 'POST',
-            url: 'api/remove.php',
-            async: true,
-            data: {'id': $(e.target).attr('data-id')},
-            success: function(response){
-                /*let currentClass = !$(e.target).hasClass('active') ? 'active' : 'inactive';
-                let newClass = $(e.target).hasClass('active') ? 'inactive' : 'active';
-                $(e.target).toggleClass(currentClass, newClass);*/
-                window.location.reload();
-            }
-        });
-    }
+    Swal.fire({
+        title: 'Tem certeza?',
+        text: `Você está prestes à ${action} o ID ${clientId}!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#2BBBAB',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'POST',
+                url: 'api/remove.php',
+                async: true,
+                data: {'id': $(e.target).attr('data-id')},
+                success: function(response){
+                    Swal.fire({
+
+                        title: 'Sucesso!',
+                        text: `O ID ${clientId} foi ${msg}.`,
+                        icon: 'success',
+                        confirmButtonColor: '#2BBBAB',
+                    }).then(() => {
+                        window.location.reload();
+                    })
+                }
+            });
+        }
+    })
 });
 
 $('.pencil-icon').click(function(e) {
 
     let clientId = $(e.target).attr('data-id');
-    let result = confirm(`Tem certeza que deseja editar o ID ${clientId}`);
-
-    if(result) {
-        window.location.href = `/pages/edit.php?id=${clientId}`
-    }
+    window.location.href = `/pages/edit.php?id=${clientId}`
 });
 
 $('.submit-button').click(function(e) {
@@ -36,14 +48,33 @@ $('.submit-button').click(function(e) {
     let data = $('#form').serializeArray();
     data.push({name: 'id', value: clientId});
 
-    $.ajax({
-        type: 'POST',
-        url: '../api/edit.php',
-        async: true,
-        data,
-        success: function(response) {
-            window.location.href = '/index.php'
+    Swal.fire({
+        title: 'Tem certeza?',
+        text: `Você está prestes à modificar o ID ${clientId}!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#2BBBAB',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/edit.php',
+                async: true,
+                data,
+                success: function(response){
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: `O ID ${clientId} foi modificado.`,
+                        icon: 'success',
+                        confirmButtonColor: '#2BBBAB',
+                    }).then(() => {
+                        window.location.href = '/index.php'
+                    })
+                }
+            });
         }
     })
-    
 });
