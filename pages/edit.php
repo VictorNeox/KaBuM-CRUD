@@ -4,7 +4,7 @@
 
     if(isset($_GET['id'])) 
     {
-        $clientId = $_GET['id'];
+        $clientId = mysqli_real_escape_string($_GET['id']);
 
         $sql = "SELECT * FROM clients WHERE id = '$clientId'";
 
