@@ -19,3 +19,28 @@ body {
 .nav-wrapper {
     background: linear-gradient(to bottom, rgba(254,191,0,1) 0%, rgba(244,130,0,1) 6%, rgba(231,98,0,1) 24%, rgba(228,91,0,1) 77%);
 }
+
+.pencil-icon {
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+.content {
+    width: 98%;
+    padding: 0px 0px 50px 20px
+}
+
+
+.table-title {
+    font-size: 55px;
+    color: rgb(77, 76, 76);
+}
+
+.pencil-icon {
+    color: rgb(172, 112, 0);
+}
+
+.pencil-icon:hover {
+    color: rgb(236, 154, 2);
+    transition: 0.3s;
+}

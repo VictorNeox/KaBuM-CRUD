@@ -11,10 +11,29 @@
         email varchar(255),
         isActive boolean DEFAULT TRUE,
         PRIMARY KEY (id)
-    );*/
+    );
+
+    CREATE TABLE addresses(
+        id int NOT NULL AUTO_INCREMENT,
+        neighbourhood varchar(255) NOT NULL,
+        street varchar(255) NOT NULL,
+        number varchar(10) NOT NULL,
+        complement varchar(255) NOT NULL,
+        zipcode varchar(8) NOT NULL,
+        city varchar(100) NOT NULL,
+        uf varchar(2),
+        client_id int,
+        FOREIGN KEY(client_id) REFERENCES clients(id),
+        PRIMARY KEY (id)
+    );
+    */
     
     include('./database/connection.php');
-    $sql = "SELECT * from clients ORDER BY isActive DESC";
+    $sql = "SELECT 
+        id, name, cpf, rg, telephone1, telephone2, birth, email, isActive 
+        from clients 
+        ORDER BY isActive DESC";
+
     include('./filter.php');
 
 
@@ -40,11 +59,6 @@
     <script defer type="text/javascript" src="./utils/jquery.mask.min.js"></script>
     <script defer type="text/javascript" src="./utils/utils.js"></script>
     <script defer type="text/javascript" src="./utils/req.js"></script>
-    <script defer type="text/javascript" src="./utils/tooltip.js"></script>
-    <script defer type="text/javascript" src="./utils/modal.js"></script>
-
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 
     <title>C.R.U.D - Home</title>
 </head>
@@ -113,6 +127,7 @@
                                 <td>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-pencil-alt pencil-icon"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i>
+                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-map-marker-alt address-icon"></i>
                                 </td>
                             </tr>
                         <?php } ?>

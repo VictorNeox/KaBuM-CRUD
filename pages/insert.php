@@ -42,7 +42,7 @@
     
     <?php include('../headers/cdn.php'); ?>
 
-    <script defer src="../utils/datePicker.js"></script>
+    <script defer type="text/javascript" src="../utils/utils.js"></script>
     <link rel="stylesheet" href="/assets/styles/global.css">
     <link rel="stylesheet" href="/assets/styles/insertEditStyles.css">
     
