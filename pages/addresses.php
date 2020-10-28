@@ -61,7 +61,7 @@
                     <div class="card horizontal">
                         <label style="position: absolute; z-index: 2;">
                             <input name="group1" type="radio" checked />
-                            <span></span>
+                            <span>Principal</span>
                         </label>
                         <div class="icons">
                             <i data-id="<?php echo $address['id']?>"  class="fas fa-pencil-alt pencil-icon address-edit modal-trigger" href="#modal1"></i>
