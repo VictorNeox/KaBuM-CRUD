@@ -1,13 +1,13 @@
 /* Address List Styles */
 .modal {
-    width: 30% !important; 
+    width: 40% !important; 
 }
 
 .input-field {
-    height: 30px;
+    height: 35px;
 }
 
-.address-modal form {
+#address-modal form {
     margin-left: 40px;
     width: 80%;
 }
@@ -28,9 +28,4 @@
     z-index: 2;
     top: 5px;
     right: 10px;
-}
-
-.trash-icon {
-    cursor: pointer;
-    color: rgb(124, 124, 124);
 }

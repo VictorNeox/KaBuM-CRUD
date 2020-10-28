@@ -44,3 +44,12 @@ body {
     color: rgb(236, 154, 2);
     transition: 0.3s;
 }
+
+i {
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+form .error {
+    color: rgb(245, 46, 46);
+}

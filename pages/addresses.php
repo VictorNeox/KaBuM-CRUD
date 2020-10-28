@@ -29,8 +29,11 @@
         
         <?php include('../headers/cdn.php'); ?>
         
+
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
         <script defer type="text/javascript" src="../utils/jquery.mask.min.js"></script>
         <script defer type="text/javascript" src="../utils/utils.js"></script>
+        <script defer type="text/javascript" src="../utils/validation.js"></script>
         <script defer type="text/javascript" src="../utils/req.js"></script>
         <script defer type="text/javascript" src="../utils/cep.js"></script>
 
@@ -70,7 +73,7 @@
     <!-- ADDRESS INSERT FORM MODAL !-->
 
     <div id="modal1" class="modal">
-        <div class="address-modal">
+        <div id="address-modal">
             <h4>Inserir endereço</h4>
             <form id="address-form">
                 <div class="row">
@@ -82,7 +85,6 @@
                             value="" 
                             size="10" 
                             maxlength="9"
-                            required
                         >
                         <label>CEP</label>
                     </div>
@@ -94,7 +96,6 @@
                             type="text" 
                             id="street" 
                             size="60"
-                            required
                         >
                         <label>Rua</label>
                     </div>
@@ -104,7 +105,6 @@
                             type="text" 
                             id="number" 
                             size="60"
-                            required
                         >
                         <label>Número</label>
                     </div>
@@ -116,7 +116,6 @@
                             type="text" 
                             id="neighbourhood" 
                             size="40" 
-                            required
                         >
                         <label>Bairro</label>
                     </div>
@@ -127,7 +126,6 @@
                             name="city" 
                             type="text" 
                             id="city" 
-                            required
                         >
                         <label>Cidade</label>
                     </div>
@@ -137,7 +135,6 @@
                             type="text" 
                             id="uf" 
                             size="2"
-                            required
                         >
                         <label>Estado</label>
                     </div>
@@ -149,10 +146,10 @@
                         <label for="complement">Complemento</label>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn waves-effect waves-light address-submit-button" data-id="<?php echo $clientId; ?>">Enviar</button>
+                </div>
             </form>
-        </div>
-        <div class="modal-footer">
-            <button class="btn waves-effect waves-light address-submit-button" data-id="<?php echo $clientId; ?>">Enviar</button>
         </div>
     </div>
 

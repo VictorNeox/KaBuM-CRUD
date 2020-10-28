@@ -87,7 +87,7 @@ $('.submit-button').click(function(e) {
 });
 
 // PAGE: address
-$(".address-submit-button").click(function(e) {
+/*$(".address-submit-button").click(function(e) {
     e.preventDefault();
 
     let data = $("#address-form").serializeArray();
@@ -111,8 +111,7 @@ $(".address-submit-button").click(function(e) {
             })
         }
     })
-
-});
+});*/
 
 $('.trash-icon').click(function(e) {
     console.log('teste');
