@@ -21,8 +21,8 @@
         complement varchar(255) NOT NULL,
         zipcode varchar(8) NOT NULL,
         city varchar(100) NOT NULL,
-        uf varchar(2),
-        client_id int,
+        uf varchar(2) NOT NULL,
+        client_id int NOT NULL,
         FOREIGN KEY(client_id) REFERENCES clients(id),
         PRIMARY KEY (id)
     );
@@ -125,9 +125,9 @@
                                 <td class="birth"><?php echo htmlspecialchars($client['birth']); ?></td>
                                 <td><?php echo htmlspecialchars($client['email']); ?></td>
                                 <td>
-                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-pencil-alt pencil-icon"></i>
-                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i>
-                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-map-marker-alt address-icon"></i>
+                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-pencil-alt pencil-icon edit-client"></i>
+                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button delete-client <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i>
+                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-map-marker-alt address-icon address-client"></i>
                                 </td>
                             </tr>
                         <?php } ?>

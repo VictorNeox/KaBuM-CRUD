@@ -1,6 +1,6 @@
 /* Address List Styles */
 .modal {
-    width: 40% !important; 
+    width: 30% !important; 
 }
 
 .input-field {
@@ -8,16 +8,15 @@
 }
 
 #address-modal form {
-    margin-left: 40px;
-    width: 80%;
+
+    width: 100%;
 }
 
 .card-content p {
     color: gray;
 }
 
-.address-modal {
-    text-align: center;
+#address-modal {
     font-size: 24px;
     color: rgb(131, 128, 128);
     padding: 15px;

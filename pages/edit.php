@@ -145,7 +145,7 @@
             </div>
             <div class="row form-flex">
                 <a class="btn waves-effect waves-light" href="/index.php" >Voltar</a> 
-                <button class="btn waves-effect waves-light submit-button" data-id="<?php echo $clientId ?>" name="submit">Enviar</button>
+                <button class="btn waves-effect waves-light edit-submit" data-id="<?php echo $clientId ?>" name="submit">Enviar</button>
             </div>
         </form>
     </div>

@@ -50,6 +50,7 @@ i {
     margin-left: 3px;
 }
 
-form .error {
+form div[class="error"] {
     color: rgb(245, 46, 46);
+    font-size: 12px;
 }

@@ -6,7 +6,6 @@
         $clientId = $_GET['id'];
         $id = mysqli_real_escape_string($conn, $_GET['id']);
         
-    
         $sql = "SELECT id, street, number, neighbourhood, city, uf, zipcode, complement 
                     FROM addresses 
                     WHERE client_id = '$id'";
@@ -16,6 +15,12 @@
         $addresses = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         $conn->close();
+    } 
+    else
+    {
+       
+        header('location: /');
+        exit();
     }
 ?>
 
@@ -55,7 +60,7 @@
                 <div class="col s3">
                     <div class="card horizontal">
                         <div class="icons">
-                            <i class="fas fa-pencil-alt pencil-icon"></i>
+                            <i data-id="<?php echo $address['id']?>" class="fas fa-pencil-alt pencil-icon address-edit modal-trigger" href="#modal2"></i>
                             <i data-id="<?php echo $address['id']?>" class="fas fa-trash-alt trash-icon"></i>
                         </div>
                         <div class="card-stacked">
@@ -70,12 +75,12 @@
             <?php } ?>
         </div>
     </div>
-    <!-- ADDRESS INSERT FORM MODAL !-->
+
 
     <div id="modal1" class="modal">
         <div id="address-modal">
-            <h4>Inserir endereço</h4>
             <form id="address-form">
+                <span style="margin-left: 10px;">Inserir endereço</span>
                 <div class="row">
                     <div class="input-field col s12">
                         <input
@@ -147,12 +152,95 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn waves-effect waves-light address-submit-button" data-id="<?php echo $clientId; ?>">Enviar</button>
+                    <button type="submit" class="btn waves-effect waves-light" data-id="<?php echo $clientId; ?>">Enviar</button>
                 </div>
             </form>
         </div>
     </div>
 
+
+        <!-- ADDRESS EDIT FORM MODAL !-->
+
+        <div id="modal2" class="modal">
+        <div id="address-edit-modal">
+            <form id="address-edit-form">
+                <span style="margin-left: 10px;">Editar endereço</span>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input
+                            name="cep" 
+                            type="text" 
+                            id="cep"
+                            value="" 
+                            size="10" 
+                            maxlength="9"
+                        >
+                        <label>CEP</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s9">
+                        <input 
+                            name="street" 
+                            type="text" 
+                            id="street" 
+                            size="60"
+                        >
+                        <label>Rua</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input 
+                            name="number" 
+                            type="text" 
+                            id="number" 
+                            size="60"
+                        >
+                        <label>Número</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input 
+                            name="neighbourhood" 
+                            type="text" 
+                            id="neighbourhood" 
+                            size="40" 
+                        >
+                        <label>Bairro</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s9">
+                        <input 
+                            name="city" 
+                            type="text" 
+                            id="city" 
+                        >
+                        <label>Cidade</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input 
+                            name="uf" 
+                            type="text" 
+                            id="uf" 
+                            size="2"
+                        >
+                        <label>Estado</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="complement" name="complement" class="materialize-textarea"></textarea>
+                        <label for="complement">Complemento</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn waves-effect waves-light" data-id="<?php echo $clientId; ?>">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <script>
         let clientId = <?php echo $clientId ?>;
     </script>

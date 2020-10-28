@@ -16,6 +16,11 @@
         mysqli_query($conn, $sql);
 
         $conn->close();
+    } 
+    else
+    {
+        header('location: /');
+        exit();
     }
     
 ?>

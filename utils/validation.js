@@ -1,4 +1,4 @@
-$("#address-form").validate({
+let addressFormOptions = {
     rules: {
         cep: {
             required: true,
@@ -43,6 +43,20 @@ $("#address-form").validate({
             required: "Digite seu estado",
         },
     },
+    errorElement : 'div',
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+}
+
+$("#address-form").validate({
+    rules: addressFormOptions.rules,
+    messages: addressFormOptions.messages,
     submitHandler: function(form) {
         let data = $("#address-form").serializeArray();
         data.push({name: 'clientId', value: clientId});
@@ -64,13 +78,36 @@ $("#address-form").validate({
             }
         })
     },
-    errorElement : 'div',
-    errorPlacement: function(error, element) {
-      var placement = $(element).data('error');
-      if (placement) {
-        $(placement).append(error)
-      } else {
-        error.insertAfter(element);
-      }
-    }
+    errorElement : addressFormOptions.errorElement,
+    errorPlacement: addressFormOptions.errorPlacement
+});
+
+$("#address-edit-form").validate({
+    rules: addressFormOptions.rules,
+    messages: addressFormOptions.messages,
+    submitHandler: function(form) {
+
+        console.log('foi');
+        /*let data = $("#address-form").serializeArray();
+        data.push({name: 'clientId', value: clientId});
+        
+        $.ajax({
+            type: 'POST',
+            url: '/api/address_add.php',
+            async: true,
+            data,
+            success: function(response) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Endereço inserido.',
+                    icon: 'success',
+                    confirmButtonColor: '#2BBBAB',
+                }).then(() => {
+                    window.location.reload();
+                })
+            }
+        })*/
+    },
+    errorElement : addressFormOptions.errorElement,
+    errorPlacement: addressFormOptions.errorPlacement
 });

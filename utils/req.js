@@ -1,10 +1,10 @@
 //PAGE: home
-$('.delete-button').click(function(e) {
+$('.delete-client').click(function(e) {
 
     let clientId = $(e.target).attr('data-id');
     let action = $(e.target).hasClass('active') ? 'inativar' : 'ativar';
     let msg = action == 'inativar' ? 'inativado' : 'ativado'
-
+    
     Swal.fire({
         title: 'Tem certeza?',
         text: `Você está prestes a ${action} o ID ${clientId}!`,
@@ -37,19 +37,19 @@ $('.delete-button').click(function(e) {
     })
 });
 
-$('.pencil-icon').click(function(e) {
+$('.edit-client').click(function(e) {
     let clientId = $(e.target).attr('data-id');
     window.location.href = `/pages/edit.php?id=${clientId}`
 });
 
-$('.address-icon').click(function(e) {
+$('.address-client').click(function(e) {
     let clientId = $(e.target).attr('data-id');
     window.location.href = `/pages/addresses.php?id=${clientId}`
 });
 
 
 // PAGE: edit.php
-$('.submit-button').click(function(e) {
+$('.edit-submit').click(function(e) {
     e.preventDefault();
 
     let data = $('#form').serializeArray();
@@ -114,8 +114,15 @@ $('.submit-button').click(function(e) {
 });*/
 
 $('.trash-icon').click(function(e) {
-    console.log('teste');
-    let clientId = $(e.target).attr('data-id');
+
+    let addressId = $(e.target).attr('data-id');
+
+    let data = {
+        clientId,
+        addressId
+    };
+
+    console.log(data);
 
     Swal.fire({
         title: 'Tem certeza?',
@@ -130,9 +137,9 @@ $('.trash-icon').click(function(e) {
         if (result.isConfirmed) {
             $.ajax({
                 type: 'POST',
-                url: 'api/remove.php',
+                url: '/api/address_remove.php',
                 async: true,
-                data: {'id': clientId},
+                data,
                 success: function(response){
                     Swal.fire({
 
@@ -142,9 +149,41 @@ $('.trash-icon').click(function(e) {
                         confirmButtonColor: '#2BBBAB',
                     }).then(() => {
                         window.location.reload();
-                    })
-                }
+                    });
+                },
             });
         }
     });
+});
+
+$(".address-edit").click(function(e) {
+    let addressId = $(e.target).attr('data-id');
+
+    let data = {
+        clientId,
+        addressId
+    };
+
+    $.ajax({
+        type: 'GET',
+        url: '/api/address_edit.php',
+        async: true,
+        data,
+        dataType: "json",
+        success: function(response) {
+
+            console.log(response);
+
+            $("#address-edit-form").find("#cep").val(response.zipcode);
+            $("#address-edit-form").find("#street").val(response.street);
+            $("#address-edit-form").find("#number").val(response.number);
+            $("#address-edit-form").find("#neighbourhood").val(response.neighbourhood);
+            $("#address-edit-form").find("#city").val(response.city);
+            $("#address-edit-form").find("#uf").val(response.uf);
+            $("#address-edit-form").find("#complement").val(response.complement);
+            $(function() {
+                M.updateTextFields();
+            });
+        }
+    })
 });
