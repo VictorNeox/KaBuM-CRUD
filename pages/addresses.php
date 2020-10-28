@@ -6,12 +6,23 @@
         $clientId = $_GET['id'];
         $id = mysqli_real_escape_string($conn, $_GET['id']);
         
-        $sql = "SELECT id, street, number, neighbourhood, city, uf, zipcode, complement 
-                    FROM addresses 
-                    WHERE client_id = '$id'";
+        $sql = "SELECT 
+                    adr.id, 
+                    adr.street, 
+                    adr.number, 
+                    adr.neighbourhood, 
+                    adr.city, 
+                    adr.uf, 
+                    adr.zipcode, 
+                    adr.complement,
+                    adr.main_address
+                FROM addresses adr
+                JOIN clients clt
+                  ON adr.client_id = clt.id
+                ORDER BY adr.main_address DESC
+                ";
 
         $result = mysqli_query($conn, $sql);
-
         $addresses = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         $conn->close();
@@ -60,7 +71,7 @@
                 <div class="col s3">
                     <div class="card horizontal">
                         <label style="position: absolute; z-index: 2;">
-                            <input name="group1" type="radio" checked />
+                            <input data-id="<?php echo $address['id']?>" name="group1" type="radio" class="main-address" <?php echo $address['main_address'] ? 'checked disabled' : '' ?> />
                             <span>Principal</span>
                         </label>
                         <div class="icons">

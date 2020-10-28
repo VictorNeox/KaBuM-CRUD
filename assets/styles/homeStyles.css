@@ -48,3 +48,32 @@
     color: rgb(104, 103, 103);
     right: 15px;
 }
+
+
+.modal {
+    width: 25% !important; 
+}
+
+#info-modal #title-modal {
+    text-align: center;
+    color: rgb(65, 65, 65);
+    font-size: 24px;
+}
+
+#info-modal .content {
+    margin-top: 20px;
+    color: rgb(110, 109, 109);
+}
+
+#info-modal .content p + p {
+    margin-top: 10px;
+}
+
+#info-modal .modal-footer {
+    padding: 0;
+}
+
+.close-modal-btn {
+    float: right;
+    margin: 10px;
+}

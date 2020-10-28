@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     onCloseStart: () => {
       $("#cep").val('');
       $("#number").val('');
+      $("#complement").val('');
       cleanForm();
       $(function() {
         M.updateTextFields();

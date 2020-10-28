@@ -1,5 +1,5 @@
 <?php
-    /*INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email, active) values ('Larissa Alves', '12345678911', '123456789', '000000000', '000000000', '2000-04-18', 'larissa-alves24@gmail.com', 0);
+    /*INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email, isactive) values ('Larissa Alves', '12345678911', '123456789', '000000000', '000000000', '2000-04-18', 'larissa-alves24@gmail.com', 0);
     CREATE TABLE clients(
         id int NOT NULL AUTO_INCREMENT,
         name varchar(255),
@@ -23,6 +23,7 @@
         city varchar(100) NOT NULL,
         uf varchar(2) NOT NULL,
         client_id int NOT NULL,
+        main_address boolean DEFAULT FALSE,
         FOREIGN KEY(client_id) REFERENCES clients(id),
         PRIMARY KEY (id)
     );
@@ -30,7 +31,7 @@
     
     include('./database/connection.php');
     $sql = "SELECT 
-        id, name, cpf, rg, telephone1, telephone2, birth, email
+        id, name, cpf, rg, email, isActive
         from clients 
         ORDER BY isActive DESC";
 
@@ -138,18 +139,22 @@
         <?php } ?>
     </div>
     <div id="info-modal" class="modal">
-        <div id="address-modal">
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-            <p>aaaaa</p>
-    </div>
+        <div id="info-modal">
+            <div id="title-modal">
+                <span class="right-align">Informações do cliente</span>
+            </div>
+            <div class="content">
+                <p>Nome: <span class="name">99999999999</span>Víctor de Oliveira</p>
+                <p>CPF: <span class="cpf">99999999999</span></p>
+                <p>RG: <span class="rg">99999999999</span></p>
+                <p>Data de nascimento: <span class="birth">2000-04-18</span></p>
+                <p>E-mail: <span class="email">99999999999</span>victor.oliveira@gmail.com</p>
+                <p>Telefone 1: <span class="cel cel1">99999999999</span></p>
+                <p>Telefone 2: <span class="cel cel2">99999999999</span></p>
+                <p>Endereço principal:</p>
+                <button class="btn waves-effect waves-light close-modal-btn" >Fechar</button>
+            </div>
+        </div>
 </div>
 
 </body>

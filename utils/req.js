@@ -86,33 +86,6 @@ $('.edit-submit').click(function(e) {
     })
 });
 
-// PAGE: address
-/*$(".address-submit-button").click(function(e) {
-    e.preventDefault();
-
-    let data = $("#address-form").serializeArray();
-    data.push({name: 'clientId', value: clientId});
-    
-    $.ajax({
-        type: 'POST',
-        url: '/api/address_add.php',
-        async: true,
-        data,
-        success: function(response) {
-
-            alert(response);
-            Swal.fire({
-                title: 'Sucesso!',
-                text: 'Endereço inserido.',
-                icon: 'success',
-                confirmButtonColor: '#2BBBAB',
-            }).then(() => {
-                window.location.reload();
-            })
-        }
-    })
-});*/
-
 $('.trash-icon').click(function(e) {
 
     let addressId = $(e.target).attr('data-id');
@@ -121,8 +94,6 @@ $('.trash-icon').click(function(e) {
         clientId,
         addressId
     };
-
-    console.log(data);
 
     Swal.fire({
         title: 'Tem certeza?',
@@ -189,4 +160,49 @@ $(".address-edit").click(function(e) {
             
         }
     })
+});
+
+
+$(".main-address").click(function(e) {
+    e.preventDefault();
+
+    let addressId = $(e.target).attr('data-id');
+
+    let data = {
+        clientId,
+        addressId
+    };
+
+    Swal.fire({
+        title: 'Tem certeza?',
+        text: `Você está prestes a modificar seu endereço principal.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#2BBBAB',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/address_main_update.php',
+                async: true,
+                data,
+                success: function(response){
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: `O endereço principal foi alterado.`,
+                        icon: 'success',
+                        confirmButtonColor: '#2BBBAB',
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                },
+                error: function(response) {
+                    alert(response);
+                }
+            });
+        }
+    });
 });
