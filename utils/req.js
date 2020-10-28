@@ -174,16 +174,19 @@ $(".address-edit").click(function(e) {
 
             console.log(response);
 
-            $("#address-edit-form").find("#cep").val(response.zipcode);
-            $("#address-edit-form").find("#street").val(response.street);
-            $("#address-edit-form").find("#number").val(response.number);
-            $("#address-edit-form").find("#neighbourhood").val(response.neighbourhood);
-            $("#address-edit-form").find("#city").val(response.city);
-            $("#address-edit-form").find("#uf").val(response.uf);
-            $("#address-edit-form").find("#complement").val(response.complement);
+            $("#cep").val(response.zipcode);
+            $("#street").val(response.street);
+            $("#number").val(response.number);
+            $("#neighbourhood").val(response.neighbourhood);
+            $("#city").val(response.city);
+            $("#uf").val(response.uf);
+            $("#complement").val(response.complement);
             $(function() {
                 M.updateTextFields();
             });
+
+            $(".address-submit-btn").attr("data-id", addressId);
+            
         }
     })
 });

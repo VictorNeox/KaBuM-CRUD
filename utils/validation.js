@@ -59,17 +59,23 @@ $("#address-form").validate({
     messages: addressFormOptions.messages,
     submitHandler: function(form) {
         let data = $("#address-form").serializeArray();
-        data.push({name: 'clientId', value: clientId});
+        let editBtnCheck = $('.address-submit-btn').attr('data-id') ? true : false;
         
+        data.push({name: 'clientId', value: clientId}); 
+        if(editBtnCheck) {
+            data.push({name: 'addressId', value: $('.address-submit-btn').attr('data-id')});
+        }
+
         $.ajax({
             type: 'POST',
-            url: '/api/address_add.php',
+            url: editBtnCheck ? '/api/address_edit.php' : '/api/address_add.php',
             async: true,
             data,
             success: function(response) {
+                console.log(response);
                 Swal.fire({
                     title: 'Sucesso!',
-                    text: 'Endereço inserido.',
+                    text: `Endereço ${editBtnCheck ? 'modificado' : 'inserido'}.`,
                     icon: 'success',
                     confirmButtonColor: '#2BBBAB',
                 }).then(() => {
@@ -77,36 +83,6 @@ $("#address-form").validate({
                 })
             }
         })
-    },
-    errorElement : addressFormOptions.errorElement,
-    errorPlacement: addressFormOptions.errorPlacement
-});
-
-$("#address-edit-form").validate({
-    rules: addressFormOptions.rules,
-    messages: addressFormOptions.messages,
-    submitHandler: function(form) {
-
-        console.log('foi');
-        /*let data = $("#address-form").serializeArray();
-        data.push({name: 'clientId', value: clientId});
-        
-        $.ajax({
-            type: 'POST',
-            url: '/api/address_add.php',
-            async: true,
-            data,
-            success: function(response) {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: 'Endereço inserido.',
-                    icon: 'success',
-                    confirmButtonColor: '#2BBBAB',
-                }).then(() => {
-                    window.location.reload();
-                })
-            }
-        })*/
     },
     errorElement : addressFormOptions.errorElement,
     errorPlacement: addressFormOptions.errorPlacement

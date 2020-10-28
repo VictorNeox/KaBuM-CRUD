@@ -120,7 +120,10 @@ document.addEventListener('DOMContentLoaded', function() {
       cleanForm();
       $(function() {
         M.updateTextFields();
-    });
+      });
+    },
+    onCloseEnd: () => {
+      $(".address-submit-btn").removeAttr('data-id');
     }
   });
 });
