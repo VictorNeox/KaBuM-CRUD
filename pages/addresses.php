@@ -60,6 +60,10 @@
                 <div class="col s3">
                     <div class="card horizontal">
                         <div class="icons">
+                            <label>
+                                <input name="group1" type="radio" checked />
+                                <span>a</span>
+                            </label>
                             <i data-id="<?php echo $address['id']?>"  class="fas fa-pencil-alt pencil-icon address-edit modal-trigger" href="#modal1"></i>
                             <i data-id="<?php echo $address['id']?>" class="fas fa-trash-alt trash-icon"></i>
                         </div>
@@ -154,7 +158,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn waves-effect waves-light address-submit-btn" >Enviar</button>
-                    <button style="display: none;" type="submit" class="btn waves-effect waves-light edit-btn" >Editar</button>
                 </div>
             </form>
         </div>

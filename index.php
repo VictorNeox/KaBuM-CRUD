@@ -105,9 +105,9 @@
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>RG</th>
-                            <th>Telefone 1</th>
+                            <!--<th>Telefone 1</th>
                             <th>Telefone 2</th>
-                            <th>Data de nascimento</th>
+                            <th>Data de nascimento</th> !-->
                             <th>E-mail</th>
                             <th>Ações</th>
                         </tr>
@@ -120,12 +120,12 @@
                                 <td><?php echo htmlspecialchars($client['name']); ?></td>
                                 <td class="cpf"><?php echo htmlspecialchars($client['cpf']); ?></td>
                                 <td class="rg"><?php echo htmlspecialchars($client['rg']); ?></td>
-                                <td class="cel"><?php echo htmlspecialchars($client['telephone1']); ?></td>
-                                <td class="cel"><?php echo htmlspecialchars($client['telephone2']); ?></td>
-                                <td class="birth"><?php echo htmlspecialchars($client['birth']); ?></td>
+                                <!--<td class="cel"><//?php echo htmlspecialchars($client['telephone1']); ?></td>
+                                <td class="cel"><//?php echo htmlspecialchars($client['telephone2']); ?></td>
+                                <td class="birth"><//?php echo htmlspecialchars($client['birth']); ?></td>!-->
                                 <td><?php echo htmlspecialchars($client['email']); ?></td>
                                 <td>
-                                    <i data-id="<?php echo $client['id']; ?>" class="fas fas fa-id-card info-client"></i>
+                                    <i data-id="<?php echo $client['id']; ?>" class="fas fas fa-id-card info-client modal-trigger" href="#info-modal"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-pencil-alt pencil-icon edit-client"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button delete-client <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-map-marker-alt address-icon address-client"></i>
@@ -136,6 +136,19 @@
                 </table>
             </div>
         <?php } ?>
+    </div>
+    <div id="info-modal" class="modal">
+        <div id="address-modal">
+            <p>aaaaa</p>
+            <p>aaaaa</p>
+            <p>aaaaa</p>
+            <p>aaaaa</p>
+            <p>aaaaa</p>
+            <p>aaaaa</p>
+            <p>aaaaa</p>
+            <p>aaaaa</p>
+            <p>aaaaa</p>
+            <p>aaaaa</p>
     </div>
 </div>
 
