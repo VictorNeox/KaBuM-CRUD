@@ -30,7 +30,7 @@
     
     include('./database/connection.php');
     $sql = "SELECT 
-        id, name, cpf, rg, telephone1, telephone2, birth, email, isActive 
+        id, name, cpf, rg, telephone1, telephone2, birth, email
         from clients 
         ORDER BY isActive DESC";
 
@@ -125,6 +125,7 @@
                                 <td class="birth"><?php echo htmlspecialchars($client['birth']); ?></td>
                                 <td><?php echo htmlspecialchars($client['email']); ?></td>
                                 <td>
+                                    <i data-id="<?php echo $client['id']; ?>" class="fas fas fa-id-card info-client"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-pencil-alt pencil-icon edit-client"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button delete-client <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-map-marker-alt address-icon address-client"></i>
