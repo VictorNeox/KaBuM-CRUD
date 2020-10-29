@@ -248,7 +248,7 @@ $(".main-address").click(function(e) {
                         icon: 'success',
                         confirmButtonColor: '#2BBBAB',
                     }).then(() => {
-                        window.location.reload();
+                        window.location.reload(true);
                     });
                 },
                 error: function(response) {
