@@ -31,11 +31,11 @@ $(document).ready(function(){
     content: "Editar",
   });
 
-  tippy('.active', {
+  tippy('.active-icon', {
     content: 'Inativar',
   });
 
-  tippy('.inactive', {
+  tippy('.inactive-icon', {
     content: 'Ativar',
   });
 

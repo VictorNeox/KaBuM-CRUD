@@ -15,13 +15,13 @@
     border-bottom: 1px solid rgb(189, 189, 189);
 }
 
-.login-header {
+.register-header {
     margin-top: 25px;
     text-align: center;
     color: rgb(104, 103, 103);
 }
 
-.login-header p {
+.register-header p {
     margin-top: 15px;
     margin-bottom: 10px;
     font-size: 24px;
@@ -32,7 +32,7 @@
     border: 2px solid rgba(32, 26, 110, 0.527);
 }
 
-.login-icons{
+.register-icons{
     font-size: 18px;
 }
 
@@ -43,7 +43,11 @@
     justify-content: center;
 }
 
-.login-btn {
+.register-btn {
     display: flex;
     justify-content: space-around;
+}
+
+.input-field {
+    height: 45px;
 }

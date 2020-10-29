@@ -10,6 +10,8 @@
         birth date,
         email varchar(255),
         isActive boolean DEFAULT TRUE,
+        user_id int NOT NULL,
+        FOREIGN KEY(user_id) REFERENCES users(id),
         PRIMARY KEY (id)
     );
 
@@ -27,6 +29,17 @@
         FOREIGN KEY(client_id) REFERENCES clients(id),
         PRIMARY KEY (id)
     );
+
+    CREATE TABLE users(
+        id int NOT NULL AUTO_INCREMENT,
+        login varchar(30) NOT NULL,
+        password varchar(255) NOT NULL,
+        name varchar(100) NOT NULL,
+        access int DEFAULT 1,
+        email varchar(255) NOT NULL,
+        PRIMARY KEY (id)
+    );
+
     */
     
     include('./database/connection.php');
@@ -128,7 +141,7 @@
                                 <td>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fas fa-id-card info-client modal-trigger" href="#info-modal"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-pencil-alt pencil-icon edit-client"></i>
-                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button delete-client <?php echo $client['isActive'] ? 'active' : 'inactive'?>"></i>
+                                    <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button delete-client <?php echo $client['isActive'] ? 'active-icon' : 'inactive-icon'?>"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-map-marker-alt address-icon address-client"></i>
                                 </td>
                             </tr>

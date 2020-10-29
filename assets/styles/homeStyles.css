@@ -4,20 +4,20 @@
     border-radius: 8px;
 }
 
-.active {
+.active-icon {
     color: rgb(13, 128, 2);
 }
 
-.active:hover {
+.active-icon:hover {
     color: rgb(17, 167, 3);
     transition: 0.3s;
 }
 
-.inactive {
+.inactive-icon {
     color: rgb(168, 2, 2);
 }
 
-.inactive:hover {
+.inactive-icon:hover {
     color: rgb(214, 3, 3);
     transition: 0.3s;
 }

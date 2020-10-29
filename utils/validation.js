@@ -54,6 +54,71 @@ let addressFormOptions = {
     }
 }
 
+$("#register-form").validate({
+    rules: addressFormOptions.rules,
+    messages: addressFormOptions.messages,
+    submitHandler: function(form) {
+        let data = $(form).serializeArray();
+
+        console.log(data);
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost/api/user/register.php',
+            async: true,
+            data,
+            dataType: 'json',
+            success: function(response) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: `Usuário cadastrado.`,
+                    icon: 'success',
+                    confirmButtonColor: '#2BBBAB',
+                }).then(() => {
+                    window.location.href = '/login.php';
+                })
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        })
+    },
+    errorElement : addressFormOptions.errorElement,
+    errorPlacement: addressFormOptions.errorPlacement
+});
+
+$("#login-form").validate({
+    rules: addressFormOptions.rules,
+    messages: addressFormOptions.messages,
+    submitHandler: function(form) {
+        let data = $(form).serializeArray();
+
+        console.log(data);
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost/api/user/authenticate.php',
+            async: true,
+            data,
+            dataType: 'json',
+            success: function(response) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: `Login realizado.`,
+                    icon: 'success',
+                    confirmButtonColor: '#2BBBAB',
+                }).then(() => {
+                    console.log(response);
+                })
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        })
+    },
+    errorElement : addressFormOptions.errorElement,
+    errorPlacement: addressFormOptions.errorPlacement
+});
+
 $("#address-form").validate({
     rules: addressFormOptions.rules,
     messages: addressFormOptions.messages,
@@ -72,7 +137,6 @@ $("#address-form").validate({
             async: true,
             data,
             success: function(response) {
-                console.log(response);
                 Swal.fire({
                     title: 'Sucesso!',
                     text: `Endereço ${editBtnCheck ? 'modificado' : 'inserido'}.`,
