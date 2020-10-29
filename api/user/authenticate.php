@@ -1,8 +1,11 @@
 <?php
+
+    include('../../token/auth.php');
+
+
     if(isset($_POST['login']) && isset($_POST['password'])) 
     {
         include('../../database/connection.php');
-        include('../../token/generate.php');
         $login = mysqli_real_escape_string($conn, $_POST['login']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
 
@@ -21,7 +24,7 @@
             $user = mysqli_fetch_array($result);
             $token = generateToken($user['id'], $user['access']);
 
-            setcookie('token', $token, '/');
+            setcookie('token', $token, time() + (10 * 365 * 24 * 60 * 60), '/');
 
             echo json_encode($token);
         }

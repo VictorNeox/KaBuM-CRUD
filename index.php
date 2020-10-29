@@ -43,6 +43,24 @@
     */
     
     include('./database/connection.php');
+    include('./token/auth.php');
+    if(isset($_COOKIE['token'])) 
+    {
+        $token = $_COOKIE['token'];
+        
+        $userData = validateToken($token);
+
+        if(!$userData)
+        {
+            echo 'ta aqui';
+            //header('location: /login.php');
+            exit();
+        }
+
+        echo var_dump($userData);
+
+
+    }
     $sql = "SELECT 
         id, name, cpf, rg, email, isActive
         from clients 

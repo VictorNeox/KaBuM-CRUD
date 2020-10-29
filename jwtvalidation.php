@@ -17,5 +17,6 @@ echo $valid . '</br>';
 $payload = base64_decode($payload);
 $payload = json_decode($payload);
 
-print_r($payload->uid);
-print_r($payload->access);
+
+echo $payload->access;
+

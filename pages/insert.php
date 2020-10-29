@@ -1,5 +1,7 @@
 <?php
 
+echo var_dump($_COOKIE);
+
     if(isset($_POST['submit'])) 
     {   
         include('../database/connection.php');
