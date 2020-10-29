@@ -66,13 +66,14 @@
 
         <h1 class="table-title">Endereços</h1>
         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Adicionar</a>
+        <a class="waves-effect waves-light btn" href="/">Voltar</a>
 
         <div class="input-field row ">
             <?php foreach($addresses as $address){ ?>
                 <div class="col s3">
                     <div class="card horizontal">
                         <label style="position: absolute; z-index: 2;">
-                            <input data-id="<?php echo $address['id']?>" name="group1" type="radio" class="main-address" <?php echo $address['main_address'] ? 'checked disabled' : '' ?> />
+                            <input data-id="<?php echo $address['id']?>" name="group1" type="radio" class="main-address" <?php echo $address['main_address'] ? 'checked="true" disabled="true"' : '' ?> />
                             <span>Principal</span>
                         </label>
                         <div class="icons">

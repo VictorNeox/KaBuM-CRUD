@@ -225,6 +225,8 @@ $(".main-address").click(function(e) {
         addressId
     };
 
+    console.log(clientId, addressId);
+
     Swal.fire({
         title: 'Tem certeza?',
         text: `Você está prestes a modificar seu endereço principal.`,

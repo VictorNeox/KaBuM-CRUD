@@ -79,7 +79,7 @@ $("#address-form").validate({
                     icon: 'success',
                     confirmButtonColor: '#2BBBAB',
                 }).then(() => {
-                    window.location.reload();
+                    window.location.reload(true);
                 })
             }
         })

@@ -52,6 +52,7 @@
 
 .modal {
     width: 25% !important; 
+    height: 475px !important;
 }
 
 #info-modal #title-modal {

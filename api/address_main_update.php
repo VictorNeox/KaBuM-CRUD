@@ -4,7 +4,7 @@
         $addressId = $_POST['addressId'];
         $clientId = $_POST['clientId'];
 
-        $sql = "UPDATE addresses SET main_address = NOT main_address WHERE client_id = '$clientId'";
+        $sql = "UPDATE addresses SET main_address = 0 WHERE client_id = '$clientId' AND main_address = 1";
 
         mysqli_query($conn, $sql);
 

@@ -91,7 +91,7 @@
                 </div>
 
                 <button style="margin-top: 25px;" type="submit" class="waves-effect waves-light btn">Filtrar</button>
-                <button style="margin-top: 25px;" onclick="window.location.href = '/';"class="waves-effect waves-light btn">Limpar filtro</button>
+                <button style="margin-top: 25px;" onclick="window.location.href = '/'" class="waves-effect waves-light btn">Limpar filtro</button>
             </form>
         </div>
 
@@ -138,29 +138,29 @@
             </div>
         <?php } ?>
     </div>
+
+
     <div id="info-modal" class="modal info-modal modal-fixed-footer">
-        <div id="info-modal">
-            <div id="title-modal">
-                <span class="right-align">Informações do cliente</span>
-            </div>
-            <div id="modal-content">
-                <p>Nome: <span id="modal-name" class="name"></span></p>
-                <p>CPF: <span class="cpf"></span></p>
-                <p>RG: <span class="rg"></span></p>
-                <p>Data de nascimento: <span class="birth"></span></p>
-                <p>E-mail: <span class="email"></span></p>
-                <p>Telefone 1: <span class="cel cel1"></span></p>
-                <p>Telefone 2: <span class="cel cel2"></span></p>
-                <p>Endereço principal:</p>
-                <p><span class="street"></span><span class="number"></span></p>
-                <p><span class="neighbourhood"></span><span class="cep"></span></p>
-                <p><span class="complement"></span></p>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-            </div>
+        <div id="title-modal">
+            <span class="right-align">Informações do cliente</span>
         </div>
-</div>
+        <div id="modal-content">
+            <p>Nome: <span id="modal-name" class="name"></span></p>
+            <p>CPF: <span class="cpf"></span></p>
+            <p>RG: <span class="rg"></span></p>
+            <p>Data de nascimento: <span class="birth"></span></p>
+            <p>E-mail: <span class="email"></span></p>
+            <p>Telefone 1: <span class="cel cel1"></span></p>
+            <p>Telefone 2: <span class="cel cel2"></span></p>
+            <p>Endereço principal:</p>
+            <p><span class="street"></span><span class="number"></span></p>
+            <p><span class="neighbourhood"></span><span class="cep"></span></p>
+            <p><span class="complement"></span></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        </div>
+    </div>
 
 </body>
 </html>
