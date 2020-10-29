@@ -138,7 +138,7 @@
             </div>
         <?php } ?>
     </div>
-    <div id="info-modal" class="modal info-modal">
+    <div id="info-modal" class="modal info-modal modal-fixed-footer">
         <div id="info-modal">
             <div id="title-modal">
                 <span class="right-align">Informações do cliente</span>
@@ -155,8 +155,9 @@
                 <p><span class="street"></span><span class="number"></span></p>
                 <p><span class="neighbourhood"></span><span class="cep"></span></p>
                 <p><span class="complement"></span></p>
-                
-                <!--<button class="btn waves-effect waves-light close-modal-btn" >Fechar</button>!-->
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
             </div>
         </div>
 </div>

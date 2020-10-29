@@ -19,6 +19,7 @@
                 FROM addresses adr
                 JOIN clients clt
                   ON adr.client_id = clt.id
+                WHERE clt.id = '$clientId'
                 ORDER BY adr.main_address DESC
                 ";
 
