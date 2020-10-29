@@ -1,11 +1,11 @@
 <?php
 
     include('./token/auth.php');
-    /*if(isset($_COOKIE['token'])) 
+    if(isset($_COOKIE['token'])) 
     {
         header('location: /');
         exit();
-    }*/
+    }
 
 ?>
 

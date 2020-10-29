@@ -1,13 +1,14 @@
 <?php
-    function generateToken($id, $access) 
+    function generateToken($user) 
     {
         $header = [
             'alg' => 'HS256',
             'typ' => 'JWT'
         ];
         $payload = [
-            'uid' => $id,
-            'access' => $access
+            'uid' => $user['id'],
+            'access' => $user['access'],
+            'name' => $user['name']
         ];
          
         $header = json_encode($header);
@@ -37,7 +38,6 @@
         
         if($signature != $valid){
             return 0;
-            exit();
         }
 
         $payload = base64_decode($payload);
@@ -45,8 +45,8 @@
 
         $userData = [
             'id' => $payload->uid,
-            'access' => $payload->access
+            'access' => $payload->access,
+            'name' => $payload->name
         ];
-        
         return $userData;
     }

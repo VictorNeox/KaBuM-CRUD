@@ -11,7 +11,7 @@
 
         $password = sha1($password);
 
-        $sql = "SELECT id, access FROM users WHERE login = '$login' AND password = '$password'";
+        $sql = "SELECT id, access, name FROM users WHERE login = '$login' AND password = '$password'";
         $result = mysqli_query($conn, $sql);
 
         
@@ -22,7 +22,7 @@
         else 
         {
             $user = mysqli_fetch_array($result);
-            $token = generateToken($user['id'], $user['access']);
+            $token = generateToken($user);
 
             setcookie('token', $token, time() + (10 * 365 * 24 * 60 * 60), '/');
 

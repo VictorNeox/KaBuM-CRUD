@@ -50,30 +50,41 @@
         
         $userData = validateToken($token);
 
-        if(!$userData)
-        {
-            echo 'ta aqui';
-            //header('location: /login.php');
-            exit();
-        }
+        if(!$userData) {
+            setcookie('token', '', time() - 3000, '/');
+            header('Location: login.php');
+        } 
+        $userId = mysqli_real_escape_string($conn, $userData['id']);
+        $access = mysqli_real_escape_string($conn, $userData['access']);
+        $name = mysqli_real_escape_string($conn, $userData['name']);
 
-        echo var_dump($userData);
-
-
-    }
-    $sql = "SELECT 
+        $sql = "SELECT 
         id, name, cpf, rg, email, isActive
         from clients 
         ORDER BY isActive DESC";
 
-    include('./filter.php');
+
+        if ($access == 1)
+        {
+            $sql = "SELECT 
+            id, name, cpf, rg, email, isActive
+            from clients
+            WHERE user_id = '$userId'
+            ORDER BY isActive DESC";
+        }
+
+        include('./filter.php');
 
 
-    $result = mysqli_query($conn, $sql) or die();
-    $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    
-    $conn->close();
-
+        $result = mysqli_query($conn, $sql) or die();
+        $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        
+        $conn->close();
+        
+    } else 
+    {
+        header('Location: login.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -141,6 +152,7 @@
                             <th>Telefone 2</th>
                             <th>Data de nascimento</th> !-->
                             <th>E-mail</th>
+                            <th>Criador</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -156,6 +168,7 @@
                                 <td class="cel"><//?php echo htmlspecialchars($client['telephone2']); ?></td>
                                 <td class="birth"><//?php echo htmlspecialchars($client['birth']); ?></td>!-->
                                 <td><?php echo htmlspecialchars($client['email']); ?></td>
+                                <td><?php echo htmlspecialchars($name); ?></td>
                                 <td>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fas fa-id-card info-client modal-trigger" href="#info-modal"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-pencil-alt pencil-icon edit-client"></i>

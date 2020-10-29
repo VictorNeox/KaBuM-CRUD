@@ -1,37 +1,57 @@
 <?php
+    include('../database/connection.php');
+    include('../token/auth.php');
+    if(isset($_COOKIE['token'])) 
+    {
+        $token = $_COOKIE['token'];
+        
+        $userData = validateToken($token);
 
-echo var_dump($_COOKIE);
+        if(!$userData) {
+            setcookie('token', '', time() - 3000, '/');
+            header('Location: login.php');
+        }
 
-    if(isset($_POST['submit'])) 
-    {   
-        include('../database/connection.php');
+        $userId = mysqli_real_escape_string($conn, $userData['id']);
+        $access = mysqli_real_escape_string($conn, $userData['access']);
 
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
-        $cpf = mysqli_real_escape_string($conn, $_POST['cpf']);
-        $rg = mysqli_real_escape_string($conn, $_POST['rg']);
-        $telephone1 = mysqli_real_escape_string($conn, $_POST['telephone1']);
-        $telephone2 = mysqli_real_escape_string($conn, $_POST['telephone2']);
+        if(isset($_POST['submit'])) 
+        {   
 
-        $birth = mysqli_real_escape_string($conn, $_POST['birth']);
-
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-
-        $sql = "INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email) VALUES (
-            '$name',
-            '$cpf',
-            '$rg',
-            '$telephone1',
-            '$telephone2',
-            '$birth',
-            '$email'
-        )";
-
-        $result = mysqli_query($conn, $sql) or die();
-        if($result) 
-        {
-            header('location: /');
-        } 
-        $conn->close();
+            include('../database/connection.php');
+    
+            $name = mysqli_real_escape_string($conn, $_POST['name']);
+            $cpf = mysqli_real_escape_string($conn, $_POST['cpf']);
+            $rg = mysqli_real_escape_string($conn, $_POST['rg']);
+            $telephone1 = mysqli_real_escape_string($conn, $_POST['telephone1']);
+            $telephone2 = mysqli_real_escape_string($conn, $_POST['telephone2']);
+    
+            $birth = mysqli_real_escape_string($conn, $_POST['birth']);
+    
+            $email = mysqli_real_escape_string($conn, $_POST['email']);
+    
+            $sql = "INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email, user_id) VALUES (
+                '$name',
+                '$cpf',
+                '$rg',
+                '$telephone1',
+                '$telephone2',
+                '$birth',
+                '$email',
+                '$userId'
+            )";
+    
+            $result = mysqli_query($conn, $sql) or die();
+            if($result) 
+            {
+                header('location: /');
+            } 
+            $conn->close();
+        }
+        
+    } else 
+    {
+        header('Location: login.php');
     }
 
 ?>

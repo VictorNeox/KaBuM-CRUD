@@ -107,7 +107,7 @@ $("#login-form").validate({
                     icon: 'success',
                     confirmButtonColor: '#2BBBAB',
                 }).then(() => {
-                    console.log(response);
+                    window.location.href = '/';
                 })
             },
             error: function(response) {
