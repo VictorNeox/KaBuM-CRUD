@@ -94,7 +94,7 @@
     <div id="modal1" class="modal">
         <div id="address-modal">
             <form id="address-form">
-                <div id="address-title"">
+                <div id="address-title">
                     <span style="margin-left: 10px;">Inserir endereço</span>
                 </div>
                 <div class="row">

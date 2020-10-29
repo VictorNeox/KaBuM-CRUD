@@ -51,6 +51,9 @@ function cleanForm() {
   $("#neighbourhood").val("");
   $("#city").val("");
   $("#uf").val("");
+  $("#cep").val('');
+  $("#number").val('');
+  $("#complement").val('');
 }
 
 // SELECT BOX
@@ -115,13 +118,32 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.modal');
   var instances = M.Modal.init(elems, {
     onCloseStart: () => {
-      $("#cep").val('');
-      $("#number").val('');
-      $("#complement").val('');
       cleanForm();
       $(function() {
         M.updateTextFields();
       });
+    },
+    onCloseEnd: () => {
+      $(".address-submit-btn").removeAttr('data-id');
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.info-modal');
+  var instances = M.Modal.init(elems, {
+    onCloseStart: () => {
+      $("#modal-content").find('.name').text('');
+      $("#modal-content").find('.cpf').text('');
+      $("#modal-content").find('.rg').text('');
+      $("#modal-content").find('.birth').text('');
+      $("#modal-content").find('.email').text('');
+      $("#modal-content").find('.cel1').text('');
+      $("#modal-content").find('.cel2').text('');
+      $("#modal-content").find('.street').text('');
+      $("#modal-content").find('.number').text('');
+      $("#modal-content").find('.neighbourhood').text('');
+      $("#modal-content").find('.cep').text('');
     },
     onCloseEnd: () => {
       $(".address-submit-btn").removeAttr('data-id');

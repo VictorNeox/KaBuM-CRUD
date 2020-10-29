@@ -60,12 +60,13 @@
     font-size: 24px;
 }
 
-#info-modal .content {
+#info-modal #modal-content {
     margin-top: 20px;
+    margin-left: 10px;
     color: rgb(110, 109, 109);
 }
 
-#info-modal .content p + p {
+#info-modal #modal-content p + p {
     margin-top: 10px;
 }
 

@@ -138,21 +138,25 @@
             </div>
         <?php } ?>
     </div>
-    <div id="info-modal" class="modal">
+    <div id="info-modal" class="modal info-modal">
         <div id="info-modal">
             <div id="title-modal">
                 <span class="right-align">Informações do cliente</span>
             </div>
-            <div class="content">
-                <p>Nome: <span class="name">99999999999</span>Víctor de Oliveira</p>
-                <p>CPF: <span class="cpf">99999999999</span></p>
-                <p>RG: <span class="rg">99999999999</span></p>
-                <p>Data de nascimento: <span class="birth">2000-04-18</span></p>
-                <p>E-mail: <span class="email">99999999999</span>victor.oliveira@gmail.com</p>
-                <p>Telefone 1: <span class="cel cel1">99999999999</span></p>
-                <p>Telefone 2: <span class="cel cel2">99999999999</span></p>
+            <div id="modal-content">
+                <p>Nome: <span id="modal-name" class="name"></span></p>
+                <p>CPF: <span class="cpf"></span></p>
+                <p>RG: <span class="rg"></span></p>
+                <p>Data de nascimento: <span class="birth"></span></p>
+                <p>E-mail: <span class="email"></span></p>
+                <p>Telefone 1: <span class="cel cel1"></span></p>
+                <p>Telefone 2: <span class="cel cel2"></span></p>
                 <p>Endereço principal:</p>
-                <button class="btn waves-effect waves-light close-modal-btn" >Fechar</button>
+                <p><span class="street"></span><span class="number"></span></p>
+                <p><span class="neighbourhood"></span><span class="cep"></span></p>
+                <p><span class="complement"></span></p>
+                
+                <!--<button class="btn waves-effect waves-light close-modal-btn" >Fechar</button>!-->
             </div>
         </div>
 </div>

@@ -47,7 +47,6 @@ $('.address-client').click(function(e) {
     window.location.href = `/pages/addresses.php?id=${clientId}`
 });
 
-
 // PAGE: edit.php
 $('.edit-submit').click(function(e) {
     e.preventDefault();
@@ -160,6 +159,59 @@ $(".address-edit").click(function(e) {
             
         }
     })
+});
+
+
+function addInfoModalMasks() {
+    $("#modal-content").find('.cpf').mask("999.999.999-99");
+    $("#modal-content").find('.rg').mask("99.999.999-9");
+    $("#modal-content").find('.cel').mask('99999-9999');
+    $("#modal-content").find('.birth').each(function(index) {
+        $(this).text(moment($(this).text()).format('D/MM/yyyy'));
+    });
+}
+
+$(".info-client").click(function(e) {
+    let clientId = $(e.target).attr('data-id');
+
+    let data = {
+        clientId,
+    };
+
+    console.log(data);
+
+    $.ajax({
+        type: 'GET',
+        url: '/api/client_info.php',
+        async: true,
+        data,
+        dataType: "json",
+        success: function(response) {
+
+            console.log(response);
+            $("#modal-content").find('.name').text(response.name);
+            $("#modal-content").find('.cpf').text(response.cpf);
+            $("#modal-content").find('.rg').text(response.rg);
+            $("#modal-content").find('.birth').text(response.birth);
+            $("#modal-content").find('.email').text(response.email);
+            $("#modal-content").find('.cel1').text(response.telephone1);
+            $("#modal-content").find('.cel2').text(response.telephone2);
+            
+            addInfoModalMasks();
+
+            if(response.zipcode != null) {
+                $("#modal-content").find('.street').text(response.street + ", ");
+                $("#modal-content").find('.number').text(response.number);
+                $("#modal-content").find('.neighbourhood').text(response.neighbourhood + " - ");
+                $("#modal-content").find('.cep').text(response.zipcode);
+                $("#modal-content").find('.complement').text(response.complement);
+            }
+            
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
 });
 
 

@@ -12,8 +12,5 @@
 
         mysqli_query($conn, $sql) or die(error());
 
-        echo json_encode(mysqli_error($conn));
-
-
         $conn->close();
     }
