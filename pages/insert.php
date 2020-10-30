@@ -6,12 +6,7 @@
         $token = $_COOKIE['token'];
         
         $userData = validateToken($token);
-
-        if(!$userData) {
-            setcookie('token', '', time() - 3000, '/');
-            header('Location: login.php');
-        }
-
+        
         $userId = mysqli_real_escape_string($conn, $userData['id']);
         $access = mysqli_real_escape_string($conn, $userData['access']);
 

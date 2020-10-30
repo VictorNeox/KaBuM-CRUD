@@ -50,27 +50,41 @@
         
         $userData = validateToken($token);
 
-        if(!$userData) {
-            setcookie('token', '', time() - 3000, '/');
-            header('Location: login.php');
-        } 
         $userId = mysqli_real_escape_string($conn, $userData['id']);
         $access = mysqli_real_escape_string($conn, $userData['access']);
         $name = mysqli_real_escape_string($conn, $userData['name']);
 
         $sql = "SELECT 
-        id, name, cpf, rg, email, isActive
-        from clients 
-        ORDER BY isActive DESC";
+                clt.id, 
+                clt.name, 
+                clt.rg, 
+                clt.cpf, 
+                clt.email, 
+                clt.isActive,
+                usr.name as userName
+            FROM clients clt
+            JOIN users usr
+            ON clt.user_id = usr.id
+            ORDER BY clt.isActive DESC
+        ";
 
 
         if ($access == 1)
         {
             $sql = "SELECT 
-            id, name, cpf, rg, email, isActive
-            from clients
-            WHERE user_id = '$userId'
-            ORDER BY isActive DESC";
+                    clt.id, 
+                    clt.name, 
+                    clt.rg, 
+                    clt.cpf, 
+                    clt.email, 
+                    clt.isActive,
+                    usr.name as userName
+                FROM clients clt
+                JOIN users usr
+                ON clt.user_id = usr.id
+                WHERE clt.user_id = '$userId'
+                ORDER BY clt.isActive DESC
+            ";
         }
 
         include('./filter.php');
@@ -158,7 +172,9 @@
                     </thead>
         
                     <tbody>
-                        <?php foreach($clients as $client){ ?>
+                        <?php foreach($clients as $client){ 
+                            $status = $client['isActive'] ? 'active-icon' : 'inactive-icon'; 
+                        ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($client['id']); ?></td>
                                 <td><?php echo htmlspecialchars($client['name']); ?></td>
@@ -168,11 +184,14 @@
                                 <td class="cel"><//?php echo htmlspecialchars($client['telephone2']); ?></td>
                                 <td class="birth"><//?php echo htmlspecialchars($client['birth']); ?></td>!-->
                                 <td><?php echo htmlspecialchars($client['email']); ?></td>
-                                <td><?php echo htmlspecialchars($name); ?></td>
+                                <td><?php echo htmlspecialchars($client['userName']); ?></td>
                                 <td>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fas fa-id-card info-client modal-trigger" href="#info-modal"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-pencil-alt pencil-icon edit-client"></i>
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button delete-client <?php echo $client['isActive'] ? 'active-icon' : 'inactive-icon'?>"></i>
+                                    <!--<?php if ($access > 1) { ?>
+                                        <i data-id="<?php echo $client['id']; ?>" class="fas fa-circle delete-button delete-client <?php echo $status ?>"></i>
+                                    <?php } ?> !-->
                                     <i data-id="<?php echo $client['id']; ?>" class="fas fa-map-marker-alt address-icon address-client"></i>
                                 </td>
                             </tr>

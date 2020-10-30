@@ -37,7 +37,8 @@
         $valid = base64_encode($valid);
         
         if($signature != $valid){
-            return 0;
+            setcookie('token', '', time() - 3000, '/');
+            header('Location: login.php');
         }
 
         $payload = base64_decode($payload);

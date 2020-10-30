@@ -21,15 +21,24 @@ $('.delete-client').click(function(e) {
                 url: 'api/remove.php',
                 async: true,
                 data: {'id': clientId},
+                dataType: 'json',
                 success: function(response){
+                        Swal.fire({
+    
+                            title: 'Sucesso!',
+                            text: `O ID ${clientId} foi ${msg}.`,
+                            icon: 'success',
+                            confirmButtonColor: '#2BBBAB',
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                },
+                error: function(response) {
                     Swal.fire({
-
-                        title: 'Sucesso!',
-                        text: `O ID ${clientId} foi ${msg}.`,
-                        icon: 'success',
+                        title: 'Erro!',
+                        text: response.responseJSON,
+                        icon: 'error',
                         confirmButtonColor: '#2BBBAB',
-                    }).then(() => {
-                        window.location.reload();
                     })
                 }
             });
@@ -70,6 +79,7 @@ $('.edit-submit').click(function(e) {
                 url: '/api/edit.php',
                 async: true,
                 data,
+                dataType: "json",
                 success: function(response){
                     Swal.fire({
                         title: 'Sucesso!',
@@ -79,7 +89,7 @@ $('.edit-submit').click(function(e) {
                     }).then(() => {
                         window.location.href = '/index.php'
                     })
-                }
+                },
             });
         }
     })
