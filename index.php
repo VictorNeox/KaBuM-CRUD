@@ -127,7 +127,9 @@
 
         <h1 class="table-title">Clientes</h1>
         <a href="/pages/insert.php" class="waves-effect waves-light btn add-btn">Adicionar cliente</a>
-
+        <?php if($access > 1) { ?>
+            <a href="/pages/users.php" class="waves-effect waves-light btn add-btn">Usuários</a>
+        <?php } ?>
         <div class="row">
             <form action="/index.php" method="get">
                 <div class="input-field col s2">

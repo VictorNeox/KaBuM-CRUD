@@ -43,7 +43,7 @@
             <form id="register-form" class=" col s11 offset-s1">
                 <div class="row s12">
                     <div class="col s12">
-                        <i class="fas fa-user-circle register-icons"></i>
+                        <i class="fas fa-user register-icons"></i>
                         <div class="input-field inline s12">
                             <input 
                                 id="name" 
@@ -58,7 +58,7 @@
                 </div>
                 <div class="row s12">
                     <div class="col s12">
-                        <i class="fas fa-user-circle login-icons"></i>
+                        <i class="fas fa-envelope register-icons"></i>
                         <div class="input-field inline s12">
                             <input 
                                 id="email" 
@@ -73,7 +73,7 @@
                 </div>
                 <div class="row s12">
                     <div class="col s12">
-                        <i class="fas fa-user-circle login-icons"></i>
+                        <i class="fas fa-user-circle register-icons"></i>
                         <div class="input-field inline s12">
                             <input 
                                 id="login" 
@@ -88,7 +88,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <i class="fas fa-lock login-icons"></i>
+                        <i class="fas fa-lock register-icons"></i>
                         <div class="input-field inline s12">
                             <input 
                                 id="password" 

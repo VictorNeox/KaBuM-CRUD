@@ -1,5 +1,6 @@
 <?php
-    include('../database/connection.php');
+    include('../../database/connection.php');
+    include('../../token/auth.php');
     if(isset($_GET['clientId']))
     {
         $clientId = mysqli_real_escape_string($conn, $_GET['clientId']);

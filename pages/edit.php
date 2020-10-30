@@ -1,12 +1,24 @@
 <?php
 
     include('../database/connection.php');
+    include('../token/auth.php');
 
-    if(isset($_GET['id'])) 
+    if(isset($_GET['id']) && isset($_COOKIE['token'])) 
     {
+
+        $token = $_COOKIE['token'];
+        $userData = validateToken($token);
+
+        $userId = mysqli_real_escape_string($conn, $userData['id']);
+
         $clientId = mysqli_real_escape_string($conn, $_GET['id']);
 
         $sql = "SELECT * FROM clients WHERE id = '$clientId'";
+
+        if($access < 2)
+        {
+            $sql = "SELECT * FROM clients where id = '$clientId' AND user_id = '$userId'";
+        }
 
         $result = mysqli_query($conn, $sql) or die();
 
@@ -16,6 +28,11 @@
             header('location: /');
             die();
         }
+    }
+    else 
+    {
+        header('location: /');
+        die();
     }
     
     $conn->close();

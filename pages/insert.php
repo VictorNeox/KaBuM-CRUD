@@ -8,7 +8,6 @@
         $userData = validateToken($token);
         
         $userId = mysqli_real_escape_string($conn, $userData['id']);
-        $access = mysqli_real_escape_string($conn, $userData['access']);
 
         if(isset($_POST['submit'])) 
         {   
@@ -44,9 +43,11 @@
             $conn->close();
         }
         
-    } else 
+    } 
+    else 
     {
-        header('Location: login.php');
+        header('location: /');
+        die();
     }
 
 ?>

@@ -18,27 +18,30 @@ $('.delete-client').click(function(e) {
         if (result.isConfirmed) {
             $.ajax({
                 type: 'POST',
-                url: 'api/remove.php',
+                url: 'api/client/remove.php',
                 async: true,
                 data: {'id': clientId},
                 dataType: 'json',
                 success: function(response){
-                        Swal.fire({
-    
-                            title: 'Sucesso!',
-                            text: `O ID ${clientId} foi ${msg}.`,
-                            icon: 'success',
-                            confirmButtonColor: '#2BBBAB',
-                        }).then(() => {
-                            window.location.reload();
-                        })
+                    Swal.fire({
+
+                        title: 'Sucesso!',
+                        text: `O ID ${clientId} foi ${msg}.`,
+                        icon: 'success',
+                        confirmButtonColor: '#2BBBAB',
+                    }).then(() => {
+                        window.location.reload();
+                    })
                 },
                 error: function(response) {
                     Swal.fire({
+
                         title: 'Erro!',
                         text: response.responseJSON,
                         icon: 'error',
                         confirmButtonColor: '#2BBBAB',
+                    }).then(() => {
+                        window.location.reload();
                     })
                 }
             });
@@ -76,10 +79,9 @@ $('.edit-submit').click(function(e) {
         if (result.isConfirmed) {
             $.ajax({
                 type: 'POST',
-                url: '/api/edit.php',
+                url: '/api/client/edit.php',
                 async: true,
                 data,
-                dataType: "json",
                 success: function(response){
                     Swal.fire({
                         title: 'Sucesso!',
@@ -117,7 +119,7 @@ $('.trash-icon').click(function(e) {
         if (result.isConfirmed) {
             $.ajax({
                 type: 'POST',
-                url: '/api/address_remove.php',
+                url: '/api/address/remove.php',
                 async: true,
                 data,
                 success: function(response){
@@ -146,7 +148,7 @@ $(".address-edit").click(function(e) {
 
     $.ajax({
         type: 'GET',
-        url: '/api/address_edit.php',
+        url: '/api/address/edit.php',
         async: true,
         data,
         dataType: "json",
@@ -171,7 +173,7 @@ $(".address-edit").click(function(e) {
     })
 });
 
-
+// Não funciona AINDA!! (Exceto a mask de DATA)
 function addInfoModalMasks() {
     $("#modal-content").find('.cpf').mask("999.999.999-99");
     $("#modal-content").find('.rg').mask("99.999.999-9");
@@ -192,7 +194,7 @@ $(".info-client").click(function(e) {
 
     $.ajax({
         type: 'GET',
-        url: '/api/client_info.php',
+        url: '/api/client/info.php',
         async: true,
         data,
         dataType: "json",
@@ -250,7 +252,7 @@ $(".main-address").click(function(e) {
         if (result.isConfirmed) {
             $.ajax({
                 type: 'POST',
-                url: '/api/address_main_update.php',
+                url: '/api/address/main_update.php',
                 async: true,
                 data,
                 success: function(response){
@@ -269,4 +271,60 @@ $(".main-address").click(function(e) {
             });
         }
     });
+});
+
+$(".access-select").change(function(e) {
+    e.preventDefault();
+
+    let access = $("option:selected", this).attr('value');
+    let id = $(e.target).attr("data-id");
+
+    let data = {
+        access,
+        id
+    }
+
+    Swal.fire({
+        title: 'Tem certeza?',
+        text: `Você está prestes a modificar o nível de acesso do usuário.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#2BBBAB',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/user/user.php',
+                async: true,
+                data,
+                dataType: 'json',
+                success: function(response){
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: `O nível de acesso foi modificado.`,
+                        icon: 'success',
+                        confirmButtonColor: '#2BBBAB',
+                    }).then(() => {
+                        window.location.reload(true);
+                    });
+                },
+                error: function(response) {
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: response.responseJSON,
+                        icon: 'error',
+                        confirmButtonColor: '#2BBBAB',
+                    })
+                }
+            });
+        }
+    });
+});
+
+$("#logout-btn").click(function(e) {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.location.href = "/login.php";
 });

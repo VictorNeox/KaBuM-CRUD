@@ -1,8 +1,9 @@
 <?php 
 
+    include('../../database/connection.php');
+    include('../../token/auth.php');
     if(isset($_POST['clientId']))
     {   
-        include('../database/connection.php');
         $clientId = mysqli_real_escape_string($conn, $_POST['clientId']);
         $addressId = mysqli_real_escape_string($conn, $_POST['addressId']);
 

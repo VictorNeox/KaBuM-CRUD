@@ -1,6 +1,7 @@
 <?php
+    include('../../database/connection.php');
+    include('../../token/auth.php');
     if(isset($_POST['addressId']) && isset($_POST['clientId'])) {
-        include('../database/connection.php');
         $addressId = $_POST['addressId'];
         $clientId = $_POST['clientId'];
 

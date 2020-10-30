@@ -64,7 +64,7 @@ $("#register-form").validate({
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost/api/user/register.php',
+            url: '/api/user/register.php',
             async: true,
             data,
             dataType: 'json',
@@ -96,7 +96,7 @@ $("#login-form").validate({
         console.log(data);
         $.ajax({
             type: 'POST',
-            url: 'http://localhost/api/user/authenticate.php',
+            url: '/api/user/authenticate.php',
             async: true,
             data,
             dataType: 'json',
@@ -111,7 +111,12 @@ $("#login-form").validate({
                 })
             },
             error: function(response) {
-                console.log(response);
+                Swal.fire({
+                    title: 'Erro!',
+                    text: response.responseJSON,
+                    icon: 'error',
+                    confirmButtonColor: '#2BBBAB',
+                })
             }
         })
     },
@@ -133,7 +138,7 @@ $("#address-form").validate({
 
         $.ajax({
             type: 'POST',
-            url: editBtnCheck ? '/api/address_edit.php' : '/api/address_add.php',
+            url: editBtnCheck ? '/api/address/edit.php' : '/api/address/add.php',
             async: true,
             data,
             success: function(response) {

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+
 * {
     font-family: 'Roboto', sans-serif;
     padding: 0;
@@ -18,6 +19,11 @@ body {
 
 .nav-wrapper {
     background: linear-gradient(to bottom, rgba(254,191,0,1) 0%, rgba(244,130,0,1) 6%, rgba(231,98,0,1) 24%, rgba(228,91,0,1) 77%);
+}
+
+#logout-btn {
+    margin-left: 20px;
+    border-radius: 4px;
 }
 
 .pencil-icon {
