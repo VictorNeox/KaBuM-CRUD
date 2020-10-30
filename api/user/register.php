@@ -15,7 +15,7 @@
         if(mysqli_num_rows($result) >= 1)
         {
             http_response_code(409);
-            echo json_encode('Login ja existe');
+            echo json_encode('Login ja existe.');
         } 
         else 
         {
@@ -24,14 +24,13 @@
             if(mysqli_num_rows($result) >= 1)
             {
                 http_response_code(409);
-                echo json_encode('E-mail ja existe');
+                echo json_encode('E-mail ja existe.');
             } else {
                 $sql = "INSERT INTO users (login, password, name, email) 
                 VALUES('$login', '$password', '$name', '$email')";
     
                 $result = mysqli_query($conn, $sql);
-    
-                echo json_encode(mysqli_error($conn));
+                echo json_encode("Usuário registrado.");
             }
         }
         $conn->close();

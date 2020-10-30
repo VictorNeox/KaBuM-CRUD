@@ -58,7 +58,8 @@ $("#register-form").validate({
     rules: addressFormOptions.rules,
     messages: addressFormOptions.messages,
     submitHandler: function(form) {
-        let data = $(form).serializeArray();
+
+        let data = $("#register-form").serializeArray();
 
         console.log(data);
 
@@ -79,7 +80,12 @@ $("#register-form").validate({
                 })
             },
             error: function(response) {
-                console.log(response);
+                Swal.fire({
+                    title: 'Erro!',
+                    text: response.responseJSON,
+                    icon: 'error',
+                    confirmButtonColor: '#2BBBAB',
+                })
             }
         })
     },
@@ -92,8 +98,6 @@ $("#login-form").validate({
     messages: addressFormOptions.messages,
     submitHandler: function(form) {
         let data = $(form).serializeArray();
-
-        console.log(data);
         $.ajax({
             type: 'POST',
             url: '/api/user/authenticate.php',
