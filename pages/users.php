@@ -1,46 +1,4 @@
 <?php
-    /*INSERT INTO users (name, cpf, rg, telephone1, telephone2, birth, email, isactive) values ('Larissa Alves', '12345678911', '123456789', '000000000', '000000000', '2000-04-18', 'larissa-alves24@gmail.com', 0);
-    CREATE TABLE users(
-        id int NOT NULL AUTO_INCREMENT,
-        name varchar(255),
-        cpf varchar(11),
-        rg varchar(9),
-        telephone1 varchar(9),
-        telephone2 varchar(9),
-        birth date,
-        email varchar(255),
-        isActive boolean DEFAULT TRUE,
-        user_id int NOT NULL,
-        FOREIGN KEY(user_id) REFERENCES users(id),
-        PRIMARY KEY (id)
-    );
-
-    CREATE TABLE addresses(
-        id int NOT NULL AUTO_INCREMENT,
-        neighbourhood varchar(255) NOT NULL,
-        street varchar(255) NOT NULL,
-        number varchar(10) NOT NULL,
-        complement varchar(255) NOT NULL,
-        zipcode varchar(8) NOT NULL,
-        city varchar(100) NOT NULL,
-        uf varchar(2) NOT NULL,
-        user_id int NOT NULL,
-        main_address boolean DEFAULT FALSE,
-        FOREIGN KEY(user_id) REFERENCES users(id),
-        PRIMARY KEY (id)
-    );
-
-    CREATE TABLE users(
-        id int NOT NULL AUTO_INCREMENT,
-        login varchar(30) NOT NULL,
-        password varchar(255) NOT NULL,
-        name varchar(100) NOT NULL,
-        access int DEFAULT 1,
-        email varchar(255) NOT NULL,
-        PRIMARY KEY (id)
-    );
-
-    */
     
     include('../database/connection.php');
     include('../token/auth.php');
@@ -131,7 +89,7 @@
                                 <td style="width: 200px;">
                                     <select class="access-select" name="access-select" data-id="<?php echo $user['id'] ?>" >
                                         <option value="1" <?php echo $user['access'] == 1 ? 'selected="true"' : '' ?> >Usuário</option>
-                                        <option value="2" <?php echo $user['access'] == 2 ? 'selected="true"' : '' ?> >Admnistrador</option>
+                                        <option value="2" <?php echo $user['access'] == 2 ? 'selected="true"' : '' ?> >Administrador</option>
                                     </select>
                                 </td>
                                 <td><?php echo htmlspecialchars($user['email']); ?></td>
