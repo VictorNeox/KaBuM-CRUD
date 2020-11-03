@@ -2,7 +2,7 @@
 $('.delete-client').click(function(e) {
 
     let clientId = $(e.target).attr('data-id');
-    let action = $(e.target).hasClass('active') ? 'inativar' : 'ativar';
+    let action = $(e.target).hasClass('active-icon') ? 'inativar' : 'ativar';
     let msg = action == 'inativar' ? 'inativado' : 'ativado'
     
     Swal.fire({
