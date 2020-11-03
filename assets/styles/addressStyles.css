@@ -41,3 +41,12 @@
 .card-content {
     margin-top: 15px;
 }
+
+.trash-icon {
+    color: rgb(109, 109, 109);
+}
+
+.trash-icon:hover {
+    color: rgb(59, 59, 59);
+    transition: 0.3s;
+}

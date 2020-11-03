@@ -43,6 +43,10 @@ $(document).ready(function(){
     content: 'Endereços',
   });
 
+  tippy('.info-client', {
+    content: 'Informações',
+  });
+
 });
 
 function cleanForm() {
