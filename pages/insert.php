@@ -61,6 +61,7 @@
     <?php include('../headers/cdn.php'); ?>
 
     <script defer type="text/javascript" src="../utils/utils.js"></script>
+    <script defer src="../utils/req.js"></script>
     <link rel="stylesheet" href="/assets/styles/global.css">
     <link rel="stylesheet" href="/assets/styles/insertEditStyles.css">
     
