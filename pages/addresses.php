@@ -5,6 +5,10 @@
         
         $clientId = $_GET['id'];
         $id = mysqli_real_escape_string($conn, $_GET['id']);
+
+        $sql = "SELECT name FROM clients WHERE id = '$clientId'";
+        $result = mysqli_query($conn, $sql);
+        $client = mysqli_fetch_array($result, MYSQLI_ASSOC);
         
         $sql = "SELECT 
                     adr.id, 
@@ -25,7 +29,7 @@
 
         $result = mysqli_query($conn, $sql);
         $addresses = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+        
         $conn->close();
     } 
     else
@@ -64,7 +68,7 @@
 
     <div class="content">
 
-        <h1 class="table-title">Endereços</h1>
+        <h1 class="table-title">Endereços do cliente <?php echo $client['name'] ?></h1>
         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Adicionar</a>
         <a class="waves-effect waves-light btn" href="/">Voltar</a>
 
