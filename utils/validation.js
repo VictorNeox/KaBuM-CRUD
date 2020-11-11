@@ -60,9 +60,6 @@ $("#register-form").validate({
     submitHandler: function(form) {
 
         let data = $("#register-form").serializeArray();
-
-        console.log(data);
-
         $.ajax({
             type: 'POST',
             url: '/api/user/register.php',

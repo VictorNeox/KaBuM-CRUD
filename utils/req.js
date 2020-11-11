@@ -154,8 +154,6 @@ $(".address-edit").click(function(e) {
         dataType: "json",
         success: function(response) {
 
-            console.log(response);
-
             $("#cep").val(response.zipcode);
             $("#street").val(response.street);
             $("#number").val(response.number);
@@ -189,9 +187,6 @@ $(".info-client").click(function(e) {
     let data = {
         clientId,
     };
-
-    console.log(data);
-
     $.ajax({
         type: 'GET',
         url: '/api/client/info.php',
@@ -200,7 +195,6 @@ $(".info-client").click(function(e) {
         dataType: "json",
         success: function(response) {
 
-            console.log(response);
             $("#modal-content").find('.name').text(response.name);
             $("#modal-content").find('.cpf').text(response.cpf);
             $("#modal-content").find('.rg').text(response.rg);
@@ -220,9 +214,6 @@ $(".info-client").click(function(e) {
             }
             
         },
-        error: function(response) {
-            console.log(response);
-        }
     });
 });
 
@@ -236,39 +227,23 @@ $(".main-address").click(function(e) {
         clientId,
         addressId
     };
-
-    console.log(clientId, addressId);
-
-    Swal.fire({
-        title: 'Tem certeza?',
-        text: `Você está prestes a modificar seu endereço principal.`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#2BBBAB',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Confirmar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: 'POST',
-                url: '/api/address/main_update.php',
-                async: true,
-                data,
-                success: function(response){
-                    Swal.fire({
-                        title: 'Sucesso!',
-                        text: `O endereço principal foi alterado.`,
-                        icon: 'success',
-                        confirmButtonColor: '#2BBBAB',
-                    }).then(() => {
-                        window.location.reload(true);
-                    });
-                },
-                error: function(response) {
-                    alert(response);
-                }
+    $.ajax({
+        type: 'POST',
+        url: '/api/address/main_update.php',
+        async: true,
+        data,
+        success: function(response){
+            Swal.fire({
+                title: 'Sucesso!',
+                text: `O endereço principal foi alterado.`,
+                icon: 'success',
+                confirmButtonColor: '#2BBBAB',
+            }).then(() => {
+                window.location.reload(true);
             });
+        },
+        error: function(response) {
+            alert(response);
         }
     });
 });

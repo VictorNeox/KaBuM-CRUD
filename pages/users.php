@@ -2,38 +2,29 @@
     
     include('../database/connection.php');
     include('../token/auth.php');
-    if(isset($_COOKIE['token'])) 
+    include('../user/authenticate.php');
+
+    $userId = mysqli_real_escape_string($conn, $userData['id']);
+    $userAccess = mysqli_real_escape_string($conn, $userData['access']);
+    $name = mysqli_real_escape_string($conn, $userData['name']);
+
+    if($access > 1) 
     {
-        $token = $_COOKIE['token'];
-        
-        $userData = validateToken($token);
-
-        $userId = mysqli_real_escape_string($conn, $userData['id']);
-        $access = mysqli_real_escape_string($conn, $userData['access']);
-        $name = mysqli_real_escape_string($conn, $userData['name']);
-
-        if($access > 1) 
-        {
-            $sql = "SELECT id, name, access, email 
-                    FROM users
-                    ORDER BY access DESC
-            ";
-        }
-        else 
-        {
-            header('Location: /');
-            exit();
-        }
-
-        $result = mysqli_query($conn, $sql) or die();
-        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        
-        $conn->close();
-        
-    } else 
-    {
-        header('Location: /login.php');
+        $sql = "SELECT id, name, access, email 
+                FROM users
+                ORDER BY access DESC
+        ";
     }
+    else 
+    {
+        header('Location: /');
+        exit();
+    }
+
+    $result = mysqli_query($conn, $sql) or die();
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+    $conn->close();
 ?>
 
 <!DOCTYPE html>

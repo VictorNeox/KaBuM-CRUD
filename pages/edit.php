@@ -1,21 +1,21 @@
 <?php
 
     include('../database/connection.php');
+    
     include('../token/auth.php');
+    include('../api/user/authenticate.php');
 
-    if(isset($_GET['id']) && isset($_COOKIE['token'])) 
+    if(isset($_GET['id'])) 
     {
 
-        $token = $_COOKIE['token'];
-        $userData = validateToken($token);
-
         $userId = mysqli_real_escape_string($conn, $userData['id']);
+        $userAccess = mysqli_real_escape_string($conn, $userData['access']);
 
         $clientId = mysqli_real_escape_string($conn, $_GET['id']);
 
         $sql = "SELECT * FROM clients WHERE id = '$clientId'";
 
-        if($access < 2)
+        if($userAccess < 2)
         {
             $sql = "SELECT * FROM clients where id = '$clientId' AND user_id = '$userId'";
         }

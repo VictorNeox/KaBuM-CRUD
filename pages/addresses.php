@@ -1,4 +1,8 @@
 <?php
+
+    include('../token/auth.php');
+    include('../api/user/authenticate.php');
+    
     if(isset($_GET['id']))
     {   
         include('../database/connection.php');

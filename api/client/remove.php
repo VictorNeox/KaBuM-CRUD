@@ -1,19 +1,15 @@
 <?php
     
     include('../../database/connection.php');
-    include('../../token/auth.php');
-    if(isset($_POST['id']) && isset($_COOKIE['token'])) 
+    include('../user/authenticate.php');
+
+    if(isset($_POST['id'])) 
     {
-
-        $token = $_COOKIE['token'];
         $clientId = $_POST['id'];
-        
-        $userData = validateToken($token);
-        
         $userId = mysqli_real_escape_string($conn, $userData['id']);
-        $access = mysqli_real_escape_string($conn, $userData['access']);
+        $userAccess = mysqli_real_escape_string($conn, $userData['access']);
 
-        if($access > 1)
+        if($userAccess > 1)
         {
             $sql = "UPDATE clients SET isActive = NOT isActive WHERE id = '$clientId'";
             mysqli_query($conn, $sql) or die(error());

@@ -1,53 +1,43 @@
 <?php
     include('../database/connection.php');
     include('../token/auth.php');
-    if(isset($_COOKIE['token'])) 
-    {
-        $token = $_COOKIE['token'];
+    include('../api/user/authenticate.php');
+    
         
-        $userData = validateToken($token);
-        
-        $userId = mysqli_real_escape_string($conn, $userData['id']);
+    $userId = mysqli_real_escape_string($conn, $userData['id']);
 
-        if(isset($_POST['submit'])) 
-        {   
+    if(isset($_POST['submit'])) 
+    {   
 
-            include('../database/connection.php');
-    
-            $name = mysqli_real_escape_string($conn, $_POST['name']);
-            $cpf = mysqli_real_escape_string($conn, $_POST['cpf']);
-            $rg = mysqli_real_escape_string($conn, $_POST['rg']);
-            $telephone1 = mysqli_real_escape_string($conn, $_POST['telephone1']);
-            $telephone2 = mysqli_real_escape_string($conn, $_POST['telephone2']);
-    
-            $birth = mysqli_real_escape_string($conn, $_POST['birth']);
-    
-            $email = mysqli_real_escape_string($conn, $_POST['email']);
-    
-            $sql = "INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email, user_id) VALUES (
-                '$name',
-                '$cpf',
-                '$rg',
-                '$telephone1',
-                '$telephone2',
-                '$birth',
-                '$email',
-                '$userId'
-            )";
-    
-            $result = mysqli_query($conn, $sql) or die();
-            if($result) 
-            {
-                header('location: /');
-            } 
-            $conn->close();
-        }
-        
-    } 
-    else 
-    {
-        header('location: /');
-        die();
+        include('../database/connection.php');
+
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $cpf = mysqli_real_escape_string($conn, $_POST['cpf']);
+        $rg = mysqli_real_escape_string($conn, $_POST['rg']);
+        $telephone1 = mysqli_real_escape_string($conn, $_POST['telephone1']);
+        $telephone2 = mysqli_real_escape_string($conn, $_POST['telephone2']);
+
+        $birth = mysqli_real_escape_string($conn, $_POST['birth']);
+
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+
+        $sql = "INSERT INTO clients (name, cpf, rg, telephone1, telephone2, birth, email, user_id) VALUES (
+            '$name',
+            '$cpf',
+            '$rg',
+            '$telephone1',
+            '$telephone2',
+            '$birth',
+            '$email',
+            '$userId'
+        )";
+
+        $result = mysqli_query($conn, $sql) or die();
+        if($result) 
+        {
+            header('location: /');
+        } 
+        $conn->close();
     }
 
 ?>
@@ -61,6 +51,7 @@
     <?php include('../headers/cdn.php'); ?>
 
     <script defer type="text/javascript" src="../utils/utils.js"></script>
+    <script defer type="text/javascript" src="../utils/jquery.mask.min.js"></script>
     <script defer src="../utils/req.js"></script>
     <link rel="stylesheet" href="/assets/styles/global.css">
     <link rel="stylesheet" href="/assets/styles/insertEditStyles.css">

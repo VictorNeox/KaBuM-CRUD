@@ -1,8 +1,7 @@
 <?php
 
     include('../../token/auth.php');
-
-
+    
     if(isset($_POST['login']) && isset($_POST['password'])) 
     {
         include('../../database/connection.php');
@@ -30,4 +29,13 @@
             echo json_encode($token);
         }
         $conn->close();
+    }
+    else if (isset($_COOKIE['token'])) 
+    {
+        $token = $_COOKIE['token'];
+        $userData = validateToken($token);
+
+    } else {
+        header("location: /login.php");
+        die();
     }

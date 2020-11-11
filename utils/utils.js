@@ -16,7 +16,6 @@ $(document).ready(function(){
     let filter = $("#filter");
     let input = $("#search");
     
-    console.log(filter.val())
 
     if(filter.val() === 'cpf' || filter.val() === 'rg') {
       input.attr('minlength', '5');

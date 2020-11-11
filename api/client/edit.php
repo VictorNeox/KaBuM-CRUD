@@ -1,12 +1,9 @@
 <?php 
 
     include('../../database/connection.php');
-    include('../../token/auth.php');
+    include('../user/authenticate.php');
 
-    if(isset($_POST['id']) && isset($_COOKIE['token'])) {
-
-        $token = $_COOKIE['token'];
-        $userData = validateToken($token);
+    if(isset($_POST['id'])) {
         
         $userId = mysqli_real_escape_string($conn, $userData['id']);
         $access = mysqli_real_escape_string($conn, $userData['access']);
