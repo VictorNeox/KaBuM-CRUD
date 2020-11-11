@@ -2,13 +2,13 @@
     
     include('../database/connection.php');
     include('../token/auth.php');
-    include('../user/authenticate.php');
+    include('../api/user/authenticate.php');
 
     $userId = mysqli_real_escape_string($conn, $userData['id']);
     $userAccess = mysqli_real_escape_string($conn, $userData['access']);
     $name = mysqli_real_escape_string($conn, $userData['name']);
 
-    if($access > 1) 
+    if($userAccess > 1) 
     {
         $sql = "SELECT id, name, access, email 
                 FROM users
