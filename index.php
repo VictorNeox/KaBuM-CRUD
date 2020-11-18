@@ -165,7 +165,7 @@
                             <th>CPF</th>
                             <th>RG</th>
                             <th>E-mail</th>
-                            <th>Criador</th>
+                            <th>Responsável</th>
                             <th>Ações</th>
                         </tr>
                     </thead>

@@ -19,6 +19,7 @@
         mysqli_query($conn, $sql);
 
         echo json_encode($sql);
+        die();
 
     } 
     if(isset($_GET['clientId']) && isset($_GET['addressId']))
@@ -32,6 +33,7 @@
         $address = mysqli_fetch_array($result, MYSQLI_ASSOC);
         
         echo json_encode($address);
+        die();
     }
 
     $conn->close();
