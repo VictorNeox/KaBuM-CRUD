@@ -15,6 +15,7 @@ body {
 .logo-kabum {
     width: 150px;
     margin-top: 5px;
+    margin-left: 10px;
 }
 
 .nav-wrapper {
@@ -22,8 +23,15 @@ body {
 }
 
 #logout-btn {
-    margin-left: 20px;
-    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px;
+    color: rgb(209, 207, 207);
+    font-size: 16px;
+}
+
+#logout-btn:hover {
+    color: rgb(238, 238, 238); 
+    transition: 0.2s;
 }
 
 .pencil-icon {
