@@ -8,18 +8,13 @@
     $userAccess = mysqli_real_escape_string($conn, $userData['access']);
     $name = mysqli_real_escape_string($conn, $userData['name']);
 
-    if($userAccess > 1) 
-    {
-        $sql = "SELECT id, name, access, email 
-                FROM users
-                ORDER BY access DESC
-        ";
-    }
-    else 
-    {
-        header('Location: /');
-        exit();
-    }
+    $sql = ($userAccess > 1) ? 
+        "SELECT id, name, access, email 
+            FROM users
+            ORDER BY access DESC
+        " 
+        :
+        exit(header('Location: /'));
 
     $result = mysqli_query($conn, $sql) or die();
     $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
