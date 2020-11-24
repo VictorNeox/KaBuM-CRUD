@@ -54,7 +54,22 @@
         $access = mysqli_real_escape_string($conn, $userData['access']);
         $name = mysqli_real_escape_string($conn, $userData['name']);
 
-        $sql = "SELECT 
+        $sql = ($access == 1) ?
+            "SELECT 
+                clt.id, 
+                clt.name, 
+                clt.rg, 
+                clt.cpf, 
+                clt.email, 
+                clt.isActive,
+                usr.name as userName
+            FROM clients clt
+            JOIN users usr
+            ON clt.user_id = usr.id
+            WHERE clt.user_id = '$userId'
+            ORDER BY clt.isActive DESC
+            " :
+            "SELECT 
                 clt.id, 
                 clt.name, 
                 clt.rg, 
@@ -66,26 +81,7 @@
             JOIN users usr
             ON clt.user_id = usr.id
             ORDER BY clt.isActive DESC
-        ";
-
-
-        if ($access == 1)
-        {
-            $sql = "SELECT 
-                    clt.id, 
-                    clt.name, 
-                    clt.rg, 
-                    clt.cpf, 
-                    clt.email, 
-                    clt.isActive,
-                    usr.name as userName
-                FROM clients clt
-                JOIN users usr
-                ON clt.user_id = usr.id
-                WHERE clt.user_id = '$userId'
-                ORDER BY clt.isActive DESC
             ";
-        }
 
         include('./filter.php');
 
