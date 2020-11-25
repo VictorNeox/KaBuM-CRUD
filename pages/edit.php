@@ -14,7 +14,7 @@
 
     $where = ($userAccess < 2) ? "AND user_id = '$userId'" : "";
 
-    $sql = "SELECT * FROM clients where id = '$clientId' AND user_id = '$userId'";
+    $sql = "SELECT * FROM clients where id = '$clientId' $where";
 
 
     $result = mysqli_query($conn, $sql) or die();
