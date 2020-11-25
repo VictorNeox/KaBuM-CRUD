@@ -5,35 +5,25 @@
     include('../token/auth.php');
     include('../api/user/authenticate.php');
 
-    if(isset($_GET['id'])) 
-    {
+    if(!isset($_GET['id'])) header('location: /') && die();
 
-        $userId = mysqli_real_escape_string($conn, $userData['id']);
-        $userAccess = mysqli_real_escape_string($conn, $userData['access']);
+    $userId = mysqli_real_escape_string($conn, $userData['id']);
+    $userAccess = mysqli_real_escape_string($conn, $userData['access']);
 
-        $clientId = mysqli_real_escape_string($conn, $_GET['id']);
-
-
-        $sql = ($userAccess < 2) ? 
-            "SELECT * FROM clients where id = '$clientId' AND user_id = '$userId'"
-            :
-            "SELECT * FROM clients WHERE id = '$clientId'";
+    $clientId = mysqli_real_escape_string($conn, $_GET['id']);
 
 
-        $result = mysqli_query($conn, $sql) or die();
+    $sql = ($userAccess < 2) ? 
+        "SELECT * FROM clients where id = '$clientId' AND user_id = '$userId'"
+        :
+        "SELECT * FROM clients WHERE id = '$clientId'";
 
-        $client = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        if(!$client)
-        {
-            header('location: /');
-            die();
-        }
-    }
-    else 
-    {
-        header('location: /');
-        die();
-    }
+
+    $result = mysqli_query($conn, $sql) or die();
+
+    $client = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+    if(!$client) header('location: /') && die();
     
     $conn->close();
 ?>

@@ -44,57 +44,53 @@
     
     include('./database/connection.php');
     include('./token/auth.php');
-    if(isset($_COOKIE['token'])) 
-    {
-        $token = $_COOKIE['token'];
-        
-        $userData = validateToken($token);
+    
+    if(!isset($_COOKIE['token'])) header('Location: login.php') && exit();
 
-        $userId = mysqli_real_escape_string($conn, $userData['id']);
-        $access = mysqli_real_escape_string($conn, $userData['access']);
-        $name = mysqli_real_escape_string($conn, $userData['name']);
+    $token = $_COOKIE['token'];
+    
+    $userData = validateToken($token);
 
-        $sql = ($access == 1) ?
-            "SELECT 
-                clt.id, 
-                clt.name, 
-                clt.rg, 
-                clt.cpf, 
-                clt.email, 
-                clt.isActive,
-                usr.name as userName
-            FROM clients clt
-            JOIN users usr
-            ON clt.user_id = usr.id
-            WHERE clt.user_id = '$userId'
-            ORDER BY clt.isActive DESC
-            " :
-            "SELECT 
-                clt.id, 
-                clt.name, 
-                clt.rg, 
-                clt.cpf, 
-                clt.email, 
-                clt.isActive,
-                usr.name as userName
-            FROM clients clt
-            JOIN users usr
-            ON clt.user_id = usr.id
-            ORDER BY clt.isActive DESC
-            ";
+    $userId = mysqli_real_escape_string($conn, $userData['id']);
+    $access = mysqli_real_escape_string($conn, $userData['access']);
+    $name = mysqli_real_escape_string($conn, $userData['name']);
 
-        include('./filter.php');
+    $sql = ($access == 1) ?
+        "SELECT 
+            clt.id, 
+            clt.name, 
+            clt.rg, 
+            clt.cpf, 
+            clt.email, 
+            clt.isActive,
+            usr.name as userName
+        FROM clients clt
+        JOIN users usr
+        ON clt.user_id = usr.id
+        WHERE clt.user_id = '$userId'
+        ORDER BY clt.isActive DESC
+        " :
+        "SELECT 
+            clt.id, 
+            clt.name, 
+            clt.rg, 
+            clt.cpf, 
+            clt.email, 
+            clt.isActive,
+            usr.name as userName
+        FROM clients clt
+        JOIN users usr
+        ON clt.user_id = usr.id
+        ORDER BY clt.isActive DESC
+        ";
+
+    include('./filter.php');
 
 
-        $result = mysqli_query($conn, $sql) or die();
-        $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        
-        $conn->close();
-        
-    } else 
-    {
-        header('Location: login.php');
-    }
+    $result = mysqli_query($conn, $sql) or die();
+    $clients = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+    $conn->close();
 ?>
 
 <!DOCTYPE html>

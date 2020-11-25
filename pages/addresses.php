@@ -3,45 +3,38 @@
     include('../token/auth.php');
     include('../api/user/authenticate.php');
     
-    if(isset($_GET['id']))
-    {   
-        include('../database/connection.php');
-        
-        $clientId = $_GET['id'];
-        $id = mysqli_real_escape_string($conn, $_GET['id']);
+    if(!isset($_GET['id'])) header('location: /') && exit();
+    
+    include('../database/connection.php');
+    
+    $clientId = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
 
-        $sql = "SELECT name FROM clients WHERE id = '$clientId'";
-        $result = mysqli_query($conn, $sql);
-        $client = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        
-        $sql = "SELECT 
-                    adr.id, 
-                    adr.street, 
-                    adr.number, 
-                    adr.neighbourhood, 
-                    adr.city, 
-                    adr.uf, 
-                    adr.zipcode, 
-                    adr.complement,
-                    adr.main_address
-                FROM addresses adr
-                JOIN clients clt
-                  ON adr.client_id = clt.id
-                WHERE clt.id = '$clientId'
-                ORDER BY adr.main_address DESC
-                ";
+    $sql = "SELECT name FROM clients WHERE id = '$clientId'";
+    $result = mysqli_query($conn, $sql);
+    $client = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+    $sql = "SELECT 
+                adr.id, 
+                adr.street, 
+                adr.number, 
+                adr.neighbourhood, 
+                adr.city, 
+                adr.uf, 
+                adr.zipcode, 
+                adr.complement,
+                adr.main_address
+            FROM addresses adr
+            JOIN clients clt
+                ON adr.client_id = clt.id
+            WHERE clt.id = '$clientId'
+            ORDER BY adr.main_address DESC
+            ";
 
-        $result = mysqli_query($conn, $sql);
-        $addresses = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        
-        $conn->close();
-    } 
-    else
-    {
-       
-        header('location: /');
-        exit();
-    }
+    $result = mysqli_query($conn, $sql);
+    $addresses = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+    $conn->close();
 ?>
 
 
