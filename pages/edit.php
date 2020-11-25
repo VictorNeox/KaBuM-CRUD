@@ -12,11 +12,9 @@
 
     $clientId = mysqli_real_escape_string($conn, $_GET['id']);
 
+    $where = ($userAccess < 2) ? "AND user_id = '$userId'" : "";
 
-    $sql = ($userAccess < 2) ? 
-        "SELECT * FROM clients where id = '$clientId' AND user_id = '$userId'"
-        :
-        "SELECT * FROM clients WHERE id = '$clientId'";
+    $sql = "SELECT * FROM clients where id = '$clientId' AND user_id = '$userId'";
 
 
     $result = mysqli_query($conn, $sql) or die();

@@ -23,12 +23,12 @@
         else
         {
             http_response_code(401);
-            echo json_encode("VocÃª nÃ£o possui permissÃ£o para isso.");
+            echo json_encode("VocÃª não possui permissão para isso.");
             exit();
         }
 
         $result = mysqli_query($conn, $sql);
-        echo json_encode("NÃ­vel de acesso alterado");
+        echo json_encode("Ní­vel de acesso alterado");
 
         $conn->close();
 

@@ -55,7 +55,9 @@
     $access = mysqli_real_escape_string($conn, $userData['access']);
     $name = mysqli_real_escape_string($conn, $userData['name']);
 
-    $sql = ($access == 1) ?
+    $where = ($access == 1) ? "WHERE clt.user_id = '$userId'" : "";
+
+    $sql =
         "SELECT 
             clt.id, 
             clt.name, 
@@ -67,20 +69,7 @@
         FROM clients clt
         JOIN users usr
         ON clt.user_id = usr.id
-        WHERE clt.user_id = '$userId'
-        ORDER BY clt.isActive DESC
-        " :
-        "SELECT 
-            clt.id, 
-            clt.name, 
-            clt.rg, 
-            clt.cpf, 
-            clt.email, 
-            clt.isActive,
-            usr.name as userName
-        FROM clients clt
-        JOIN users usr
-        ON clt.user_id = usr.id
+        $where
         ORDER BY clt.isActive DESC
         ";
 

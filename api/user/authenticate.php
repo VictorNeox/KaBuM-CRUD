@@ -17,7 +17,7 @@
         if(mysqli_num_rows($result) < 1)
         {
             http_response_code(401);
-            echo json_encode('UsuÃ¡rio ou senha incorretos.');
+            echo json_encode('Usuário ou senha incorretos.');
         } 
         else 
         {

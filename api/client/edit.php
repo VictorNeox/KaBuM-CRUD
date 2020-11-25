@@ -17,22 +17,10 @@
         $email = mysqli_real_escape_string($conn, strip_tags($_POST['email']));
         $birth = mysqli_real_escape_string($conn, strip_tags($_POST['birth']));
 
+        $where = ($access < 2) ? "AND user_id = '$userId'" : "";
 
-        $sql = "UPDATE clients 
-                SET 
-                    name = '$name',
-                    cpf = '$cpf',
-                    rg = '$rg',
-                    telephone1 = '$telephone1',
-                    telephone2 = '$telephone2',
-                    email = '$email',
-                    birth = '$birth'
-                WHERE id = '$id'
-            ";
-        
-        if($access < 2) 
-        {
-            $sql = "UPDATE clients 
+        $sql =
+            "UPDATE clients 
             SET 
                 name = '$name',
                 cpf = '$cpf',
@@ -41,10 +29,9 @@
                 telephone2 = '$telephone2',
                 email = '$email',
                 birth = '$birth'
-            WHERE id = '$id' AND user_id = '$userId'
-        ";   
-        }
-
+            WHERE id = '$id' 
+            $where";
+        
         $result = mysqli_query($conn, $sql);
     }
 
