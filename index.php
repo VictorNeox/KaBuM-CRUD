@@ -45,7 +45,7 @@
     include('./database/connection.php');
     include('./token/auth.php');
     
-    if(!isset($_COOKIE['token'])) header('Location: login.php') && exit();
+    if(!isset($_COOKIE['token'])) die(header('location: login.php'));
 
     $token = $_COOKIE['token'];
     

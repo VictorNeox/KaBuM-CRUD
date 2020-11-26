@@ -5,7 +5,7 @@
     include('../token/auth.php');
     include('../api/user/authenticate.php');
 
-    if(!isset($_GET['id'])) header('location: /') && die();
+    if(!isset($_GET['id'])) die(header('location: /'));
 
     $userId = mysqli_real_escape_string($conn, $userData['id']);
     $userAccess = mysqli_real_escape_string($conn, $userData['access']);

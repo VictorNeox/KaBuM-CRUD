@@ -3,7 +3,7 @@
     include('../token/auth.php');
     include('../api/user/authenticate.php');
     
-    if(!isset($_GET['id'])) header('location: /') && exit();
+    if(!isset($_GET['id'])) die(header('location: /'));
     
     include('../database/connection.php');
     

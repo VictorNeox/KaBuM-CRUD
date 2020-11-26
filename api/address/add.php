@@ -1,5 +1,5 @@
 <?php
-    if(!isset($_POST['clientId'])) header('location: /') && die();
+    if(!isset($_POST['clientId'])) die(header('location: /'));
     
     include('../../database/connection.php');
     include('../../token/auth.php');

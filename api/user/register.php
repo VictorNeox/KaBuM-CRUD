@@ -30,7 +30,7 @@
                 VALUES('$login', '$password', '$name', '$email')";
     
                 $result = mysqli_query($conn, $sql);
-                echo json_encode("Usuário registrado.");
+                echo json_encode("UsuÃ¡rio registrado.");
             }
         }
         $conn->close();

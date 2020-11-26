@@ -1,9 +1,5 @@
 <?php
-    if(isset($_COOKIE['token'])) 
-    {
-        header('location: /');
-        exit();
-    }
+    if(isset($_COOKIE['token'])) die(header('location: /'));
 ?>
 
 
