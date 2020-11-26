@@ -17,7 +17,7 @@
         else
         {
             http_response_code(401);
-            echo json_encode("Você não possui permissão para isso.");
+            echo json_encode("Voce nao possui permissao para isso");
             exit();
         }
         echo json_encode("Status modificado com sucesso");
